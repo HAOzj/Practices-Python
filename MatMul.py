@@ -3,13 +3,14 @@ Created on Thu July 14:35 2017
 
 Author : HAO zhaojun
 """
-
-# the function to optimise the order of matrix multiplication
-# input  : an array of matrix dimension, ith and (i+1)th represent the nth matrice dimension 
-# output : two matrix M and P
-#          M counts the number of multiplication at element level, its (i,j) element represents the number of multiplication between ith matrice and jth matrice 
-#          P records the index of left matrice in last multiplication, its (i,j) element represents the index of left matrice in last multiplication between ith matrice and jth matrice
 def MatMulOrder(D):
+	'''the function to optimise the order of matrix multiplication
+	@parameters :
+		input(list) :- an array of matrix dimension, ith and (i+1)th represent the ith matrice dimension 
+	@returns : two matrix M and P
+		M(list) :- counts the number of multiplication at element level, its [i][j] element represents the number of multiplication between ith matrice and jth matrice 
+		P(list) :- records the index of left matrice in last multiplication, its [i][j] element represents the index of left matrice in last multiplication between ith matrice and jth matrice
+	'''
 	num = len(D)-1
 	print("There are %d matrix to multiply" %num )  
 	M = [ [0 for i in range(num)] for j in range(num) ]
