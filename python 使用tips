@@ -3,3 +3,4 @@ pip install module --upgrade # 更新到最新版本
 def(positional arguments, named arguments, default arguments) # 变量顺序
 def(*args, **kwargs) # *args为不确定长度的参数,是列表; **kwargs为named arguments
 class的 __repr__(self) # 给开发者显示内容, 参看 https://stackoverflow.com/questions/1984162/purpose-of-pythons-repr
+class的 __dict__(self) # instance的内部变量名字的字典,参看 https://stackoverflow.com/questions/4877290/what-is-the-dict-dict-attribute-of-a-python-class
