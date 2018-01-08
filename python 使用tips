@@ -2,3 +2,4 @@ pip install 'tensorflow==1.3' --force-reinstall  # pip更新module到specific版
 pip install module --upgrade # 更新到最新版本
 def(positional arguments, named arguments, default arguments) # 变量顺序
 def(*args, **kwargs) # *args为不确定长度的参数,是列表; **kwargs为named arguments
+class的 __repr__(self) # 给开发者显示内容, 参看 https://stackoverflow.com/questions/1984162/purpose-of-pythons-repr
