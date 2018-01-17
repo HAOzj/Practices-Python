@@ -20,5 +20,5 @@ re.search(substring, string) # 如果有匹配,无论是否开头,
   $ : end
   其他参考:http://www.runoob.com/python/python-reg-expressions.html
   
-  
-  
+super() # 父类
+class(Baseclass) # __init__时最好也初始化Baseclass
