@@ -22,3 +22,5 @@ re.search(substring, string) # 如果有匹配,无论是否开头,
   
 super() # 父类
 class(Baseclass) # __init__时最好也初始化Baseclass
+
+generator # 生成器,用来节省内存,也是一种iterable.不过 1)you can only iterate it over once; 2) (elements) rather than [elements]; 3)用yield rather than return
