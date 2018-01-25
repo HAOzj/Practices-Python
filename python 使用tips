@@ -24,5 +24,7 @@ super() # 父类
 class(Baseclass) # __init__时最好也初始化Baseclass
 
 generator # 生成器,用来节省内存,也是一种iterable.
-# 不过 1)you can only iterate it over once; 2) (elements) rather than [elements]; 3)用yield rather than return, the function will return a generator
-# refer to https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do
+          # 不过 1)you can only iterate it over once; 2) (elements) rather than [elements]; 3)用yield rather than return, the function will return a generator
+          # refer to https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do
+传入引用     # python中函数传入引用(c中的传指针),只对 可改变类型有用
+            # 可改变类型  : list, dict ; 不可改变类型: int, float, string, tuple
