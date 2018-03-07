@@ -18,7 +18,7 @@ re.search(substring, string) # 如果有匹配,无论是否开头,
   .{min,max}  : number of occurences between min and max
   ^ : begin
   $ : end
-  [/s/S] 和 . 比较 : 前者遇到换行等会终止,而后者不会
+  [/s/S] 和 . 比较 : 前者遇到换行等不会终止,而dot无法匹配换行符
   其他参考:http://www.runoob.com/python/python-reg-expressions.html
   
 super() # 父类
