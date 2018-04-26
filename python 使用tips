@@ -33,4 +33,6 @@ dict(zip(x,y))  # map two lists into a dict
                 # refer to https://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python
 A[np.newaxis, :]  # np.newaxis is used to increase the dimension of an existing array by one more dimension 
                   # for instance, A = np.array([1,2]). 
-                  # A[np.newaxis,:] -> array([[1,2]])  while A[:,np.newaxis] -> array([[1],[2]])
+                  # A[np.newaxis,:] -> array([[1,2]])  while A[:,np.newaxis] -> array([[1],[2]])  
+json.dumps(data, default=str)  # overcome “datetime.datetime not JSON serializable”
+
