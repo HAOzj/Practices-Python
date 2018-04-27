@@ -35,6 +35,7 @@ date相关:
   from dateutil.relativedelta import relativedelta \date + relativedelta( months= 1)  # 给定日期 前/后 几个月 的日期
   date +/- datetime.timedelta(days/hours/senconds = int) #  前/后 几 天/小时/分/秒 given a datetime
   datetime.datetime.today().weekday()  # 判断 the day of week given a date  
+  workalendar # 提供G20国家节日的module
 
 检测相关:
   sys.exit({message}) # 退出程序并输出message  
