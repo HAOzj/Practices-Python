@@ -31,3 +31,12 @@ json相关:
   with open(file) as fp: \  data= json.load(fp)
   json.dumps(data, default=str)  # overcome “datetime.datetime not JSON serializable”
 
+date相关:
+  from dateutil.relativedelta import relativedelta \date + relativedelta( months= 1)  # 给定日期 前/后 几个月 的日期
+  date +/- datetime.timedelta(days/hours/senconds = int) #  前/后 几 天/小时/分/秒 given a datetime
+  datetime.datetime.today().weekday()  # 判断 the day of week given a date  
+
+检测相关:
+  sys.exit({message}) # 退出程序并输出message  
+  if '{name}' in vars() # 判断变量是否存在  
+  raise {error}({message}) # 触发error并输出message
