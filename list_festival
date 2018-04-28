@@ -48,7 +48,7 @@
   '圣诞节前夕' : { 'calendar': 'solar', 'date' : [12,24], 'duration' :1 },  
   '圣诞节前夜' : { 'calendar': 'solar', 'date' : [12,24], 'duration' :1 },  
   '圣诞节' : { 'calendar': 'solar', 'date' : [12,25], 'duration' :1 },  
-  '母亲节' : { 'calendar': 'variedWithinMonth', 'month' : 5, 'oridnal' : 2, 'weekday' : 7, 'duration' :1 },  
-  '父亲节' : { 'calendar': 'variedWithinMonth', 'month' : 6, 'oridnal' : 3, 'weekday' : 7, 'duration' :1 },  
-  '感恩节' : { 'calendar': 'variedWithinMonth', 'month' : 11, 'oridnal' : 4, 'weekday' : 4, 'duration' :1 },  
-  '复活节' : { 'calendar' : 'other'}
+  '母亲节' : { 'calendar': 'variedWithinMonth', 'date' : [5,2],  'weekday' : 7, 'duration' :1 },   # 实际上是5月第2个周日
+  '父亲节' : { 'calendar': 'variedWithinMonth', 'date' : [6,3],  'weekday' : 7, 'duration' :1 },  
+  '感恩节' : { 'calendar': 'variedWithinMonth', 'date' : [11,4], 'weekday' : 4, 'duration' :1 },  
+  '复活节' : { 'calendar' : 'other', 'date' : [4,1], 'duration' :1}
