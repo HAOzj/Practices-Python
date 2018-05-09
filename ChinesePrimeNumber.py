@@ -10,22 +10,28 @@ Created on 06 Aug 13:21
 from math import sqrt, pow
 from numpy import exp
 
-# function to identify prime numbers
-# input   : number 
-# output  : if the given number is prime, 'Y'; otherwise, 'N'
 def isPrime(n):
+	''' function to identify prime numbers
+	args: 
+		n(int) :- integer to check 
+	returns: 
+		bi(str) :- 'Y" if {n} is prime, 'Y'; otherwise, 'N'
+	'''
 	bi = 'Y'
 	for i in range(2,round(sqrt(n))):
 		if(n%i == 0):
 			bi = 'N'
 	return(bi)
     
-
-# function to identify fake prime numbers according to Chinese Prime Numbers Hypothesis
-# input  : the largest amount of fake prime numbers 
-#		   the number boundary of fake prime numbers
-# output : display all fake prime numbers in the given range
 def CPN(n,m):
+	''' 
+	function to identify fake prime numbers according to Chinese Prime Numbers Hypothesis
+	display all fake prime numbers in the given range
+	
+	args: 
+		n(int) :- the largest amount of fake prime numbers 
+		m(int) :- the number boundary
+	'''
 	i = 3
 	k = 0
 	while i<m and k<n :
