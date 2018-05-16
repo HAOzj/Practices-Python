@@ -1,0 +1,10 @@
+numpy :  
+    
+    
+scipy :  
+  scipy.sparse.csr_matrix # scipy提供了稀疏矩阵的存储方式，当要存储的矩阵稀疏时，用于节省内容。
+                          # 稀疏矩阵有不同的储存格式，比如csr(Compressed Sparse Row Format），就是按照行来存储非零元素，有两种实现方式:
+                          # 1. csr_matrix((data, (row_ind, col_ind)), [shape=(M, N)]), data, row_ind和col_ind满足关系 : a[row_ind[k], col_ind[k]] = data[k].
+                          # 2. csr_matrix((data, indices, indptr), [shape=(M, N)]), 标准的csr_matrix表现方式. 第i行的非零元素的列指数存在indices[indptr[i]:indptr[i+1]]中，对应元素值为data[indptr[i]:indptr[i+1]]. 
+                          # reference : https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html
+                          
