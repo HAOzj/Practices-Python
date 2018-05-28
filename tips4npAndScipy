@@ -8,3 +8,4 @@ scipy :
                           # 2. csr_matrix((data, indices, indptr), [shape=(M, N)]), 标准的csr_matrix表现方式. 第i行的非零元素的列指数存在indices[indptr[i]:indptr[i+1]]中，对应元素值为data[indptr[i]:indptr[i+1]]. 
                           # reference : https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html 和 https://blog.csdn.net/pipisorry/article/details/41762945
                           
+  scipy.spatial.distance.cdist(XA, XB, metric='euclidean', *args, **kwargs) # Computes distance between each pair of the two collections of inputs.
