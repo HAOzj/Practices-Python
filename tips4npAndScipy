@@ -1,4 +1,6 @@
 numpy :  
+    np.argsort(array, axis = -1, kind = "quicksort", order =None) # 返回的是数组值从小到大的索引值
+                                                                  # 要注意的是，2-d矩阵中numpy中axis =0表示列方向, axis = 1表示行方向 
     
     
 scipy :  
