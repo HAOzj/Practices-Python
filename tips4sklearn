@@ -1,6 +1,0 @@
-sklearn.utils.check_array   # 对数组、列表、稀疏矩阵等进行有效性确认检查。一般，输入会转化为大于2维的numpy array  
-                            # ref : http://scikit-learn.org/stable/modules/generated/sklearn.utils.check_array.html  
-sklearn.metrics.pairwise.euclidean_distances # 参数X和Y，返回 (dist(X_i, Y_j) 的距离矩阵. Y默认为X  
-                                             # 参数squared为True，则返回squared Euclidean distances.  
-                                             # ref : http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.euclidean_distances.html
-sklearn.preprocessing.normalize # 归一化
