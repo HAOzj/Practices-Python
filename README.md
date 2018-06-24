@@ -1,10 +1,10 @@
 # Practices-Python
 1. implementation of some interesting algos, including 
-  1.  Chinese Prime Number,   
-  2.  matrix multiplication optimization,  
-  3.  sorting algos,  
-  4.  data bucketing, and  
-  5.  viterbi decoder etc  
+  1).  Chinese Prime Number,   
+  2).  matrix multiplication optimization,  
+  3).  sorting algos,  
+  4).  data bucketing, and  
+  5).  viterbi decoder etc  
   
 2. summarize tips for novices to use re, numpy, scipy, and sklearn 
 
