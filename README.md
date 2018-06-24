@@ -7,9 +7,9 @@
   5).  viterbi decoder etc  
   
 2. summarize tips for novices to use  
-  1). re,  
-  2). numpy,  
-  3). scipy, and  
+  1). re  
+  2). numpy  
+  3). scipy    
   4). sklearn  
 
 一些有趣算法的实现,包括中国素数,矩阵乘法顺序优化,排序算法,分箱以及Viterbi解码算法等  
