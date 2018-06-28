@@ -46,6 +46,8 @@ def ChiMerge(X, y, significanceLevel, min_interval):
     3. 选择Chi Stat中最小并小于合并阈值的相邻区间合并
     4. 重复2.3步直到Chi stat全部大于合并阈值或区间数小于等于最少区间数
     
+    参考https://github.com/HAOzj/Reading-and-Summary/blob/master/ChiMerge.pdf
+    
     Args:
         X(np.array) :- 自变量序列
         y(np.array) :- 因变量序列
