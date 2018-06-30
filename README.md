@@ -5,6 +5,10 @@
 1. 一些有趣算法的实现,包括中国素数,矩阵乘法顺序优化,排序算法,分箱以及Viterbi解码算法等  
 2. 总结了对于新手有用的re, numpy, scipy和sklearn的技巧
 
+**组织形式**  
+1. 各算法的py实现放在主目录下对应名字的.py文件中,对应名字的.ipynb文件包含了使用实例.  
+2. 各py模块使用技巧放在tips文件夹下
+
 **环境和依赖**  
 py3
 pip install -r requirements.txt
