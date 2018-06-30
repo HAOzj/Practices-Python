@@ -5,11 +5,12 @@ Author : HAO zhaojun
 """
 def MatMulOrder(D):
 	'''the function to optimise the order of matrix multiplication
-	@parameters :
-		input(list) :- an array of matrix dimension, ith and (i+1)th represent the ith matrice dimension 
-	@returns : two matrix M and P
-		M(list) :- counts the number of multiplication at element level, its [i][j] element represents the number of multiplication between ith matrice and jth matrice 
-		P(list) :- records the index of left matrice in last multiplication, its [i][j] element represents the index of left matrice in last multiplication between ith matrice and jth matrice
+
+	Args :
+		input(iterables) :- an array of matrix dimension, ith and (i+1)th represent the ith matrice dimension 
+	Returns : 
+		M(iterables) :- counts the number of multiplication at element level, its [i][j] element represents the number of multiplication between ith matrice and jth matrice 
+		P(iterables) :- records the index of left matrice in last multiplication, its [i][j] element represents the index of left matrice in last multiplication between ith matrice and jth matrice
 	'''
 	num = len(D)-1
 	print("There are %d matrix to multiply" %num )  

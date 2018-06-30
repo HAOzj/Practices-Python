@@ -1,9 +1,9 @@
+'''
 一些节日的计算公式:  
   节气日期  
     通式寿星公式 : Y* D+C -L,  
     其中 Y=年代后两位, D= 0.2422， L=该世纪经过的闰年数, C=f(节气,年份)  
-  <br>
-  <br>
+
   复活节  
     y = 年份
     n = y-1900;
@@ -14,9 +14,9 @@
     w = mod(n+q+31-m,7)
     d = 25-m-w  
     若为正数，月份为4月；否则，月份为3月,日期为31+d,比如若为0，则为3月31日。  
-    <br>
+'''
   
-节日日期列表
+节日日期列表 = {
   '新年' : { 'calendar': 'solar', 'date' : [1,1], 'duration' :3 },  
   '公历新年' : { 'calendar': 'solar', 'date' : [1,1], 'duration' :3 },  
   '元旦' : { 'calendar': 'solar', 'date' : [1,1], 'duration' :3 },  
@@ -52,3 +52,4 @@
   '父亲节' : { 'calendar': 'variedWithinMonth', 'date' : [6,3],  'weekday' : 7, 'duration' :1 },  
   '感恩节' : { 'calendar': 'variedWithinMonth', 'date' : [11,4], 'weekday' : 4, 'duration' :1 },  
   '复活节' : { 'calendar' : 'other', 'date' : [4,1], 'duration' :1}
+}

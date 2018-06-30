@@ -35,15 +35,6 @@ def dichto(liste, x):
                 r = mid
             else:
                 l = mid
-            # print("\n")
-            # for i in range(length):
-            #     if i == r or i ==l:
-            #         print(
-            #             colored(liste[i],'red'),
-            #             end = " "
-            #         )
-            #     else :
-            #         print(liste[i], end= " ")
         liste.insert(r, x)
 
     for i in range(length +1):
