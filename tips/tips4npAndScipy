@@ -1,4 +1,9 @@
 numpy :  
+    np.rand.shuffle(a) # shuffle一个数组,返回值为空  
+    np.reshape  #  改变矩阵形状  
+                #  A = np.reshape(A, (新形状)) 不同于 A = tf.reshape(A, [新形状])  
+    np.min\max\sum # 类似于min\max\sum,不过可以用于多维数组  
+                
     np.argsort(array, axis = -1, kind = "quicksort", order =None) # 返回的是数组值从小到大的索引值
                                                                   # 要注意的是，2-d矩阵中numpy中axis =0表示列方向, axis = 1表示行方向 
                                                                   
