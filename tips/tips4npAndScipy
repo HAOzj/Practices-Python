@@ -1,7 +1,13 @@
 numpy :  
+    A[np.newaxis, :]  # np.newaxis is used to increase the dimension of an existing array by one more dimension 
+                    # for instance, A = np.array([1,2]). 
+                    # A[np.newaxis,:] -> array([[1,2]])  while A[:,np.newaxis] -> array([[1],[2]])  
+                    
     np.rand.shuffle(a) # shuffle一个数组,返回值为空  
-    np.reshape  #  改变矩阵形状  
+  
+   np.reshape  #  改变矩阵形状  
                 #  A = np.reshape(A, (新形状)) 不同于 A = tf.reshape(A, [新形状])  
+                
     np.min\max\sum # 类似于min\max\sum,不过可以用于多维数组  
                 
     np.argsort(array, axis = -1, kind = "quicksort", order =None) # 返回的是数组值从小到大的索引值
@@ -9,7 +15,8 @@ numpy :
                                                                   
     np.dtype    # 定义数据类型,类似c里的结构体,比如 
                 # dt = np.dtype(   [('name',np.str  ,16), ('grade', np.float, (2))     ])  
-                # bulletin = np.array([ ('hzj', (99,99)),   ('hsz',(100,100))], dtype=  dt)
+                # bulletin = np.array([ ('hzj', (99,99)),   ('hsz',(100,100))], dtype=  dt)  
+                
     astype      # numpy中做数据类型转换时最好用astype
     
     np数据类型(https://docs.scipy.org/doc/numpy/user/basics.types.html):     
