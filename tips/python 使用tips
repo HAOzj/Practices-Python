@@ -22,14 +22,14 @@ pip相关:
   dict(zip(x,y))  # map two lists into a dict 
                   # refer to https://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python
 
-np相关：
-  A[np.newaxis, :]  # np.newaxis is used to increase the dimension of an existing array by one more dimension 
-                    # for instance, A = np.array([1,2]). 
-                    # A[np.newaxis,:] -> array([[1,2]])  while A[:,np.newaxis] -> array([[1],[2]])  
 json相关:
   with open(file,'w') as fp : \  fp.write(json.dumps(data))
   with open(file) as fp: \  data= json.load(fp)
   json.dumps(data, default=str)  # overcome “datetime.datetime not JSON serializable”
+
+pickle相关:
+  with open(file, "wb") as fp:\  pickle.dump(data, fp)      # dump将数据存入文件,dumps存入字符串  
+  with open(file, "rb") as fp:\  data = pickle.load(fp, encoding = "bytes") # loads操作对象也是字符串   
 
 date相关:
   from dateutil.relativedelta import relativedelta \date + relativedelta( months= 1)  # 给定日期 前/后 几个月 的日期
