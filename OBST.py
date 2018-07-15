@@ -1,8 +1,10 @@
 """
-Created on the 1th July 2018
+Created on the 15th July 2018
 
 @author : woshihaozhaojun@sina.com
 """
+import numpy as np 
+
 def OBST(P,Q):
     ''' 最优二叉搜索树
 
@@ -33,12 +35,12 @@ def OBST(P,Q):
         for j in range(i, n):
             
             if i==j:
-                Exp["{}_{}".format(i,j)] = P[i] + sum(Q[i:i+2])*2
+                Exp["{}_{}".format(i,j)] = P[i] 
             else :
                 optimum = np.inf
                 pivot = i+1
                 for k in range(i+1, j+1):
-                    new = Exp["{}_{}".format(i,k-1)] + Exp["{}_{}".format(k+1, j)] +  sum(P[i:j+1]) + sum(Q[i:j+2])
+                    new = Exp["{}_{}".format(i,k-1)] + Exp["{}_{}".format(k+1, j)] +  sum(P[i:j+1]) 
                     if optimum > new :
                         optimum = new
                         pivot = k
@@ -80,7 +82,7 @@ def main():
 
     OBST(P, Q)
 
-if __name__ ="__main__":
+if __name__ == "__main__":
     main()
 
 
