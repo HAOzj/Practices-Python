@@ -55,3 +55,10 @@ def _Q2B(ustring):
         ss += chr(inside_code)
     return ss
 ########## end
+
+## 繁简体转换 ##
+######### start
+from hanziconv import HanziConv
+text = HanziConv.toSimplified(text)
+text = HanziConv.toTraditional(text)
+########## end
