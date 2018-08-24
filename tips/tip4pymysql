@@ -1,0 +1,20 @@
+
+config = {  
+    "host" : str,  
+    "port" : int,  
+    "user" : str,  
+    "password" : str,  
+    "db" : str, # 可省略  
+    "charset" : str,  
+    "cursorclass" : str # 可省略  
+}
+
+db = pymysql.connect(**config)
+cursor = db.cursor()
+
+cursor.execute(sentence)
+db.commit() # 如果是事务性数据库,每次命令必须commit; engine=InnoDB就是事务性数据库
+content = cursor.fetchall() # 默认cursor返回[tuple], 用cursor = connection.cursor(pymysql.cursors.DictCursor)时,cursor.fetchone()返回的就是字典了  
+
+cursor.close()
+db.close()
