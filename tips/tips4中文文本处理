@@ -52,7 +52,7 @@ def _Q2B(ustring):
         elif (inside_code >= 65281 and inside_code <= 65374):  # 全角字符（除空格）根据关系转化
             inside_code -= 65248
 
-        ss += chr(inside_code)
+        ss += chr(inside_code)  # py2中unichar
     return ss
 ########## end
 
