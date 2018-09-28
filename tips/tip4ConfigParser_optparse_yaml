@@ -13,6 +13,34 @@ xx = config_get.get(section, param) # 可以getint,返回的就是int类型
 [section]
 param=xxx
 
+
+# yaml
+从.yaml文件中读数据
+
+## .yaml文件格式
+
+结构通过空格缩进来展示.列表里的项用"-"来代表,字典里的键值对用":"分隔.
+
+name: junxi
+age: 18
+spouse:
+    name: Rui
+    age: 18
+children:
+    - name: Chen You
+      age: 3
+    - name: Ruo Xi
+      age: 2
+
+## 代码 
+
+import yaml
+
+f = open('yaml_example.yaml')
+content = yaml.load(f)
+
+print type(content)
+
 # optparse  
 从命令行中读取参数  
 
