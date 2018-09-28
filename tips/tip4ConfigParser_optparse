@@ -8,6 +8,11 @@ config_get.read(conf_path)
 
 xx = config_get.get(section, param) # 可以getint,返回的就是int类型  
 
+## .ini文件格式
+
+[section]
+param=xxx
+
 # optparse  
 从命令行中读取参数  
 
