@@ -1,4 +1,5 @@
-
+## 基本语法 
+import pymysql
 config = {  
     "host" : str,  
     "port" : int,  
@@ -14,7 +15,20 @@ cursor = db.cursor()
 
 cursor.execute(sentence)
 db.commit() # 如果是事务性数据库,每次命令必须commit; engine=InnoDB就是事务性数据库
-content = cursor.fetchall() # 默认cursor返回[tuple], 用cursor = connection.cursor(pymysql.cursors.DictCursor)时,cursor.fetchone()返回的就是字典了  
+records = cursor.fetchall() # 默认cursor返回[tuple]
+record = cursor.fetchone() # 返回一条数据,不节省内存
 
 cursor.close()
 db.close()
+
+## cursor类型  
+### SScursor  
+流式游标,返回生成器,可以用来节省内存,缺点是和commit不兼容,不可用于insert和update操作
+
+with self.db.cursor(pymysql.cursors.SSCursor) as cursor:
+    cursor.execute(sql)
+    # self.db.commit() 一定要去掉,否则返回为空
+    records = cursor.fetchall()
+    
+### DictCursor  
+字典游标,返回[dict]
