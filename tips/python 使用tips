@@ -38,6 +38,6 @@ date相关:
   workalendar # 提供G20国家节日的module
 
 检测相关:
-  sys.exit({message}) # 退出程序并输出message  
-  if '{name}' in vars() # 判断变量是否存在  
-  raise {error}({message}) # 触发error并输出message
+  sys.exit(<message>) # 退出程序并输出message  
+  if '<name>' in vars() # 判断变量是否存在  
+  raise <error>(<message>) # 触发error并输出message
