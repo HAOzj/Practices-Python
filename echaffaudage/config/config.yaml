@@ -1,0 +1,11 @@
+Mysql:
+  Host: 
+  Port: 
+  User: 
+  Password: 
+  Db_name:
+  Dest_table_base: 
+
+Hive:
+  Host: 
+  Db_name: 
