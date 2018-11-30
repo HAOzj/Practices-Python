@@ -7,7 +7,7 @@
 3. 一个好用的脚手架
 
 **组织形式**  
-1. 各算法放在对应的文件夹下,py实现放在主目录下对应名字的.py文件中,对应名字的.ipynb文件包含了使用实例.基础算法和算法导论中的一些算法单独开辟文件夹.  
+1. 各算法放在对应的文件夹下,py实现放在主目录下对应名字的.py文件中,对应名字的.ipynb文件包含了使用实例.基础算法,离散化方法和算法导论中的一些算法单独开辟文件夹.  
 2. 各py模块使用技巧放在tips文件夹下
 3. 脚手架放在echaffaudage文件夹下
 
@@ -19,11 +19,10 @@ pip install -r requirements.txt
 **introduction**  
 This project is my pet project and involves  
 1. implementation of some interesting algos, including  
-  1).  Chinese Prime Number,   
-  2).  matrix multiplication optimization,  
-  3).  sorting algos,  
-  4).  data bucketing, and  
-  5).  viterbi decoder etc  
+  1).  Chinese Prime Number and a special ergodity problem solution,   
+  2).  algorithms presented in the book <<introduction to alogrithms>> such as matrix multiplication optimization,  
+  3).  basic algorithms such as sorting algos,  
+  4).  data bucketing such as Chi Merge etc
   
 2. summarizing tips for novices to use  
   1). re  
