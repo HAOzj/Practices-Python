@@ -52,7 +52,7 @@ def ChiMerge(X, y, significanceLevel, min_interval):
         X(np.array) :- 自变量序列
         y(np.array) :- 因变量序列
         sigfnicanceLevel(float) :- 显著性水平,一般是[0.9, 0.95, 0.99]中一个
-        min_interval(int) :- 
+        min_interval(int) :- 最少区间数
     Returns:
         X_y(iterables) :- 每个元素为[区间, 区间内种类频数分布]
         classes(iterables) :- 种类列表
