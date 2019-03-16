@@ -18,7 +18,7 @@ regex :
   \Z ($) : end  
   \s : 匹配任意空白字符，相当于 [ \t\n\r\f\v]  
   \w : 匹配任意数字和字母，相当于 [a-zA-Z0-9_]  
-  [/s/S] 和 . 比较 : 前者遇到换行等不会终止,而dot无法匹配换行符  
+  [\s\S] 和 . 比较 : 前者遇到换行等不会终止,而dot无法匹配换行符  
   \1 : is equivalent to re.search(...).group(1), the first parentheses-delimited expression inside of the regex.
   
   其他参考:http://www.runoob.com/python/python-reg-expressions.html
