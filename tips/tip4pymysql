@@ -27,7 +27,7 @@ db.close()
 
 with self.db.cursor(pymysql.cursors.SSCursor) as cursor:
     cursor.execute(sql)
-    # self.db.commit() 一定要去掉,否则返回为空
+    self.db.commit() # 一定要去掉,否则返回为空; 普通cursor和DictCursor不需要
     records = cursor.fetchall()
     
 ### DictCursor  
