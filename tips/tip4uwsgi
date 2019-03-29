@@ -1,0 +1,29 @@
+# supervisor  
+用supervisor监控进程时要加入  
+- killasgroup=true
+- stopasgroup=true
+
+# .ini文件  
+
+[uwsgi]  
+# uwsgi 启动时所使用的地址与端口  
+http = 0.0.0.0:8000  
+http-socket = :8000  
+# 指向网站目录  
+chdir = YOURDIR    
+plugin = python  
+
+# python 启动程序文件  
+wsgi-file = YOURPYFILE  
+
+# python 程序内用以启动的 application 变量名  
+callable = app  
+
+# 处理器数  
+processes = 4  
+
+# 线程数  
+threads = 2  
+  
+#状态检测地址  
+stats = 0.0.0.0:9191  
