@@ -1,0 +1,42 @@
+# 介绍  
+cProfile提供了代码中各个函数调用次数和占用时间的统计,可以帮助我们分析性能瓶颈所在.
+
+
+# 装饰器  
+import cProfile
+import pstats
+import os
+
+def do_cprofile(filename):
+    """
+    Decorator for function profiling.
+    """
+    def wrapper(func):
+        def profiled_func(*args, **kwargs):
+            # Flag for do profiling or not.
+            DO_PROF = os.getenv("PROFILING")
+            if DO_PROF:
+                profile = cProfile.Profile()
+                profile.enable()
+                result = func(*args, **kwargs)
+                profile.disable()
+                # Sort stat by internal time.
+                sortby = "tottime"
+                ps = pstats.Stats(profile).sort_stats(sortby)
+                ps.dump_stats(filename)
+            else:
+                result = func(*args, **kwargs)
+            return result
+        return profiled_func
+    return wrapper
+    
+e.g.
+> export PROFILING=y
+
+@do_cprofile("scrutiny.prof")
+def imprimer():
+  print("Hello World!")
+import pstats  
+file = "scrutiny.prof"
+p = pstats.Stats(file)
+p.sort_stats(KEY).print_stats() # KEY: choices=["calls", "cumulative", "line", etc]
