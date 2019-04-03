@@ -1,20 +1,23 @@
 ## 基本语法 
 import pymysql
 config = {  
-    "host" : str,  
-    "port" : int,  
-    "user" : str,  
-    "password" : str,  
-    "db" : str, # 可省略  
-    "charset" : str,  
-    "cursorclass" : str # 可省略  
+    "host": str,  
+    "port": int,  
+    "user": str,  
+    "password": str,  
+    "db": str, # 可省略  
+    "charset": str,  
+    "cursorclass": str # 可省略  
 }
 
 db = pymysql.connect(**config)
 cursor = db.cursor()
 
-cursor.execute(sentence)
+cursor.execute(sentence, *param) # commit或者rollback之前会锁表,会return 受影响的记录数
+cursor.executemany(sentence, params)
+
 db.commit() # 如果是事务性数据库,每次命令必须commit; engine=InnoDB就是事务性数据库
+db.rollback() # 回撤操作,建表操作不能回撤
 records = cursor.fetchall() # 默认cursor返回[tuple]
 record = cursor.fetchone() # 返回一条数据,不节省内存
 
@@ -23,7 +26,7 @@ db.close()
 
 ## cursor类型  
 ### SScursor  
-流式游标,返回生成器,可以用来节省内存,缺点是和commit不兼容,不可用于insert和update操作
+流式游标,当数据量过大或者连接缓慢时使用,并不节省内存,缺点是和commit不兼容,不可用于insert和update操作
 
 with self.db.cursor(pymysql.cursors.SSCursor) as cursor:
     cursor.execute(sql)
@@ -32,3 +35,6 @@ with self.db.cursor(pymysql.cursors.SSCursor) as cursor:
     
 ### DictCursor  
 字典游标,返回[dict]
+
+### SSDictCursor
+流式字典游标
