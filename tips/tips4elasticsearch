@@ -4,12 +4,12 @@
     index_str = "XXXX"   # 可以包含通配符
     doc_type_str = "XXXX"  
     body ={
-      "key" : value
+      "KEY": VALUE
     }
     es.index(  
-        index= index_str,   
-        doc_type= doc_type_str,  
-        body= datum  
+        index=index_str,   
+        doc_type=doc_type_str,  
+        body=datum  
     )   
     
 查找:
@@ -18,22 +18,22 @@
     es = Elasticsearch([es_url])  
     body = {
         "query":{
-                "match": {u"key": value
+                "match": {"KEY": VALUE
     }  
-    es.search(index = index_str, doc_type =doc_type_str,  body = body, size = search_size )  
+    es.search(index=index_str, doc_type=doc_type_str, body=body, size=search_size )  
 
 获取全部documents:  
-    doc = {  
-            'size' : 10000,   # 最大10 000
+    body = {  
+            'size': 10000,   # 最大10 000
             'query': {  
-                'match_all' : {}  
+                'match_all': {"KEY": VALUE}  
            }  
        }  
-    res = es.search( doc_type=doc_type_str, body=doc,scroll='1m')  # 前10 000条数据
+    res = es.search(doc_type=doc_type_str, body=body, scroll='1m')  # 前10 000条数据
     
     ''' 接下来的10 000条,之后的10 000条则同样操作 ''' 
     scroll = res['_scroll_id']  
-    res2 = es.scroll(scroll_id = scroll, scroll = '1m')  
+    res2 = es.scroll(scroll_id=scroll, scroll='1m')  
 
 删除：  
-    es.indices.delete(index = index_str)  # 根据index删除
+    es.indices.delete(index=index_str)  # 根据index删除
