@@ -9,11 +9,11 @@
     es.index(  
         index=index_str,   
         doc_type=doc_type_str,  
-        body=datum  
+        body=body
     )   
     
 查找:
-    ''' es的查找方式很灵活，这里以根据一个field查找为例说明 '''
+    # es的查找方式很灵活，这里以根据一个field查找为例说明
     es_url = "XXX.XXX.X.XXX:XXXX"  
     es = Elasticsearch([es_url])  
     body = {
