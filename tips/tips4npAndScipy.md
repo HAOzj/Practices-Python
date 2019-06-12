@@ -1,13 +1,19 @@
 # numpy 
-- A[np.newaxis, :],矩阵增加一个维度,for instance, A = np.array([1,2]).A[np.newaxis,:] -> array([[1,2]])  while A[:,np.newaxis] -> array([[1],[2]])                      
+- A[np.newaxis, :],矩阵增加一个维度,for instance, 
+```
+A = np.array([1,2])
+A[np.newaxis,:] # array([[1,2]])  
+A[:,np.newaxis] # array([[1],[2]])                      
+```
+
 - np.rand.shuffle(a), shuffle一个数组,返回值为空  
--np.reshape,改变矩阵形状  
+- np.reshape,改变矩阵形状  
 ```
 A = np.reshape(A, (新形状)) 
 A = tf.reshape(A, [新形状])  
 ```                
--np.min\max\sum,类似于min\max\sum,不过可以用于多维数组             
--np.argsort(array, axis = -1, kind = "quicksort", order =None),返回的是数组值从小到大的索引值.要注意的是，2-d矩阵中numpy中axis =0表示列方向, axis = 1表示行方向                                                                  
+- np.min\max\sum,类似于min\max\sum,不过可以用于多维数组             
+- np.argsort(array, axis=-1, kind="quicksort", order=None),返回的是数组值从小到大的索引值.要注意的是,2-d矩阵中numpy中axis=0表示列方向, axis=1表示行方向                                                                  
 - np.dtype,定义数据类型,类似c里的结构体,比如 
 ```
 dt = np.dtype([('name', np.str, 16), ('grade', np.float, (2))])  
@@ -52,5 +58,8 @@ scipy.sparse.csr_matrix
 
 ## 向量对距离
   scipy.spatial.distance.cdist(XA, XB, metric='euclidean', *args, **kwargs) 
-  - Computes distance between each pair of the two collections of inputs.
- - 距离可以自定义,比如距离函数可以自定义,比如lambda u, v: np.dot(u, v) / (LA.norm(u) * LA.norm(v)+1)
+ - Computes distance between each pair of the two collections of inputs.
+ - 距离可以自定义,比如距离函数可以自定义,比如
+ ```
+comic_sim = cdist(comic_matrix, comic_matrix, lambda u, v: np.dot(u, v) / (LA.norm(u) * LA.norm(v)+1))
+ ```
