@@ -1,4 +1,7 @@
 # numpy 
+  
+
+## 矩阵操作
 - A[np.newaxis, :],矩阵增加一个维度,for instance, 
 ```
 A = np.array([1,2])
@@ -6,14 +9,16 @@ A[np.newaxis,:] # array([[1,2]])
 A[:,np.newaxis] # array([[1],[2]])                      
 ```
 
-- np.rand.shuffle(a), shuffle一个数组,返回值为空  
+ 
 - np.reshape,改变矩阵形状  
 ```
 A = np.reshape(A, (新形状)) 
 A = tf.reshape(A, [新形状])  
 ```                
-- np.min\max\sum,类似于min\max\sum,不过可以用于多维数组             
+         
 - np.argsort(array, axis=-1, kind="quicksort", order=None),返回的是数组值从小到大的索引值.要注意的是,2-d矩阵中numpy中axis=0表示列方向, axis=1表示行方向                                                                  
+
+## 类型相关操作
 - np.dtype,定义数据类型,类似c里的结构体,比如 
 ```
 dt = np.dtype([('name', np.str, 16), ('grade', np.float, (2))])  
@@ -45,7 +50,10 @@ bulletin = np.array([ ('hzj', (99,99)), ('hsz',(100,100))], dtype=dt)
 |complex64	|Complex number, represented by two 32-bit floats (real and imaginary components)|
 |complex128	|Complex number, represented by two 64-bit floats (real and imaginary components)|
     
-    
+
+## 其他
+- np.rand.shuffle(a), shuffle一个数组,返回值为空 
+- np.min\max\sum,类似于min\max\sum,不过可以用于多维数组   
     
 # scipy
 ## 稀疏矩阵
