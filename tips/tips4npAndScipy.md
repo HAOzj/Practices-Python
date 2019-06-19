@@ -16,7 +16,7 @@ A = np.reshape(A, (新形状))
 A = tf.reshape(A, [新形状])  
 ```                
          
-- np.argsort(array, axis=-1, kind="quicksort", order=None),返回的是数组值从小到大的索引值.要注意的是,2-d矩阵中numpy中axis=0表示列方向, axis=1表示行方向                                                                  
+- np.argsort(array, axis=-1, kind="quicksort", order=None),返回的是数组值从小到大的索引值.要注意的是,2-d矩阵中numpy中axis=0表示列方向, axis=1表示行方向.处理scipy.sparse.csr_matrix前要np.array(矩阵)转化之.                                                                  
 
 ## 类型相关操作
 - np.dtype,定义数据类型,类似c里的结构体,比如 
