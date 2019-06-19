@@ -52,7 +52,7 @@ bulletin = np.array([ ('hzj', (99,99)), ('hsz',(100,100))], dtype=dt)
     
 
 ## 其他
-- np.random.shuffle(a), shuffle一个数组,返回值为空 
+- np.random.shuffle(a), shuffle一个数组,返回值为空, sklearn.utils.shuffle可以同时shuffle多个数组 
 - np.min\max\sum,类似于min\max\sum,不过可以用于多维数组   
     
 # scipy
