@@ -62,7 +62,9 @@ scipy.sparse.csr_matrix
 - 稀疏矩阵有不同的储存格式，比如csr(Compressed Sparse Row Format），就是按照行来存储非零元素，有两种实现方式:  
     1. csr_matrix((data, (row_ind, col_ind)), [shape=(M, N)]), data, row_ind和col_ind满足关系 : a[row_ind[k], col_ind[k]] = data[k].  
      2. csr_matrix((data, indices, indptr), [shape=(M, N)]), 标准的csr_matrix表现方式. 第i行的非零元素的列指数存在indices[indptr[i]:indptr[i+1]]中，对应元素值为data[indptr[i]:indptr[i+1]].   
-- reference : https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html 和 https://blog.csdn.net/pipisorry/article/details/41762945                         
+- __mul__ 为矩阵乘法, .multiply(another)为点乘, / 为点除
+- reference : https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html 和 https://blog.csdn.net/pipisorry/article/details/41762945    
+
 
 ## 向量对距离
   scipy.spatial.distance.cdist(XA, XB, metric='euclidean', *args, **kwargs) 
