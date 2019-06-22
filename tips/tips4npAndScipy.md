@@ -64,6 +64,7 @@ scipy.sparse.csr_matrix
      2. csr_matrix((data, indices, indptr), [shape=(M, N)]), 标准的csr_matrix表现方式. 第i行的非零元素的列指数存在indices[indptr[i]:indptr[i+1]]中，对应元素值为data[indptr[i]:indptr[i+1]].   
 - __mul__ 为矩阵乘法, .multiply(another)为点乘, / 为点除
 - reference : https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html 和 https://blog.csdn.net/pipisorry/article/details/41762945    
+- 普通矩阵转csr_matrix时,记得给shape,否则会自动根据非0区域来截取
 
 
 ## 向量对距离
