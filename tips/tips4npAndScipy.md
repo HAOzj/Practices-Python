@@ -73,3 +73,4 @@ scipy.sparse.csr_matrix
  ```
 comic_sim = cdist(comic_matrix, comic_matrix, lambda u, v: np.dot(u, v) / (LA.norm(u) * LA.norm(v)+1))
  ```
+ - 不支持稀疏矩阵,稀疏矩阵可以考虑用sklearn.metrics.pairwise中的距离函数
