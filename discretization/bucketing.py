@@ -8,14 +8,14 @@ import numpy as np
 from scipy.stats import chi2
 
 def ChiStatOfNei(Freq1, Freq2):
-    ''' 计算两个频数分布的Chi Stat
+    """计算两个频数分布的Chi Stat.
     
     Args:
         Freq1(np.array)
         Freq2(np.array)
     Returns:
         Chi stat of Freq1 and Freq2
-    '''
+    """
     if Freq1.size != Freq2.size:
         raise ValueError("Lengths of the two arrays to compare are not identical")
         
@@ -37,7 +37,7 @@ def ChiStatOfNei(Freq1, Freq2):
 
 
 def ChiMerge(X, y, significanceLevel, min_interval):
-    ''' Chi Merge
+    """Chi Merge.
     
     bottom-up式的分箱方法,
     
@@ -57,7 +57,7 @@ def ChiMerge(X, y, significanceLevel, min_interval):
         X_y(iterables) :- 每个元素为[区间, 区间内种类频数分布]
         classes(iterables) :- 种类列表
         intervals(iterables) :- 元素为区间左边界，升序排列
-    '''
+    """
     ### 变量检查 ###
     ########## start
     if X.size != y.size :
@@ -122,7 +122,7 @@ def ChiMerge(X, y, significanceLevel, min_interval):
 
 def test():
     X = [1e-2, 0.5, 0.7, 0.9, 0.3, 1, 1.6, 1.8, 1.55, 2.2, 2.5, 2, 10]
-    y = ['超低','低',  '低'   , '低'   , '低' , '中'  , '中' , '中' , '中'   , '高'   ,'高'   , '高', '超高']
+    y = ["超低", "低", "低", "低", "低", "中", "中", "中", "中", "高", "高", "高", "超高"]
     X= np.array(X)
     y = np.array(y)
 
