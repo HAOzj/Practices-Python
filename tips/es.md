@@ -1,4 +1,5 @@
-''' 精确匹配
+## 精确匹配. 
+
 '''
 "query" : {
     "constant_score" : {  # constant_score 查询以非评分模式来执行 term 查询并以一作为统一评分
@@ -21,7 +22,9 @@
     }
 }
 
-''' 范围匹配
+''' 
+
+## 范围匹配
 '''
 "query" : {
     "constant_score" : {
@@ -35,38 +38,37 @@
         }
     }
 }
+''' 
 
-
-
-''' 底层查询 
+## 底层查询 
 
 term 或 fuzzy 这样的底层查询不需要分析阶段，它们对单个词项进行操作
-'''
 
-''' 高层查询
+
+## 高层查询
 
 像 match 或 query_string 这样的查询是高层查询，它们了解字段映射的信息：
 
-如果查询 日期（date） 或 整数（integer） 字段，它们会将查询字符串分别作为日期或整数对待。
-如果查询一个（ not_analyzed ）未分析的精确值字符串字段， 它们会将整个查询字符串作为单个词项对待。
-但如果要查询一个（ analyzed ）已分析的全文字段， 它们会先将查询字符串传递到一个合适的分析器，然后生成一个供查询的词项列表。
-一旦组成了词项列表，这个查询会对每个词项逐一执行底层的查询，再将结果合并，然后为每个文档生成一个最终的相关度评分。
-'''
+- 如果查询 日期（date） 或 整数（integer） 字段，它们会将查询字符串分别作为日期或整数对待。
+- 如果查询一个（ not_analyzed ）未分析的精确值字符串字段， 它们会将整个查询字符串作为单个词项对待。
+- 但如果要查询一个（ analyzed ）已分析的全文字段， 它们会先将查询字符串传递到一个合适的分析器，然后生成一个供查询的词项列表。
+- 一旦组成了词项列表，这个查询会对每个词项逐一执行底层的查询，再将结果合并，然后为每个文档生成一个最终的相关度评分。
 
 
-''' bool查询
+## bool查询
 
 bool （布尔）过滤器。 这是个 复合过滤器（compound filter） ，它可以接受多个其他过滤器作为参数，并将这些过滤器结合成各式各样的布尔（逻辑）组合。
 
 bool 查询是多语句查询的主干
 它的适用场景很多，特别是当需要将不同查询字符串映射到不同字段的时候。
-'''
 
-''' must must_not should
+
+## must must_not should
 
 布尔过滤器编辑
 一个 bool 过滤器由三部分组成：
 
+```
 {
    "bool" : {
       "must" :     [],
@@ -74,17 +76,19 @@ bool 查询是多语句查询的主干
       "must_not" : [],
    }
 }
+```
 
-must
+### must
 所有的语句都 必须（must） 匹配，与 AND 等价。
-must_not
+### must_not
 所有的语句都 不能（must not） 匹配，与 NOT 等价。
-should
+### should
 至少有一个语句要匹配，与 OR 等价。
 
 所有 must 语句必须匹配，所有 must_not 语句都必须不匹配
 默认情况下，没有 should 语句是必须匹配的，只有一个例外：那就是当没有 must 语句的时候，至少有一个 should 语句必须匹配。
 就像我们能控制 match 查询的精度 一样，我们可以通过 minimum_should_match 参数(绝对数字或百分比)控制需要匹配的 should 语句的数量
+
 '''
 "query": {
     "bool": { # bool查询, more-matches-is-better
@@ -101,7 +105,7 @@ should
     }
 }
 
-''' boost 
+## boost 
 
 直接用boost来调节权重, boost默认为1
 '''
@@ -128,15 +132,15 @@ should
     }
 }
 
-''' multi-field 多字段搜索
+''' 
+
+## multi-field 多字段搜索. 
 
 单字符串查询的三种场景 : 最佳字段best fields，多数字段most fields，交叉字段cross fields
 
-前两者是字段中心式 field-centric,le dernier是词中心式term-centric
-'''
+前两者是字段中心式 field-centric,le dernier是词中心式term-centric. 
 
-
-''' best field 
+## best field 
 不使用 bool 查询，可以使用 dis_max 即分离 最大化查询（Disjunction Max Query）
 
 分离（Disjunction）的意思是 或（or） ，这与可以把结合（conjunction）理解成 与（and） 相对应。
@@ -155,7 +159,7 @@ dis_max 只使用单个最佳匹配的字段的得分
     }
 }
 
-'''
+## tie_breaker
 tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它的评分方式如下：
 
 获得最佳匹配语句的评分 _score 。
@@ -173,7 +177,9 @@ tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它�
 }
 
 
-# multi_match 查询为能在多个字段上反复执行相同查询提供了一种便捷方式
+## multi_match  
+查询为能在多个字段上反复执行相同查询提供了一种便捷方式
+```
 "dis_max": {
     "queries":  [
         {
@@ -210,7 +216,9 @@ tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它�
 }
 
 
-''' most fields
+''' 
+
+## most fields
 
 为了提高召回率,我们通常考虑 提取词干\变音\近义词 等,将同一文本不同处理后放入其它的字段
 这些附加的字段可以看成提高每个文档的相关度评分的信号 signals ，能匹配字段的越多越好
@@ -224,17 +232,16 @@ tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它�
     }
 }
 
-''' cross fields
+''' 
+
+## cross fields
 
 跨字段查询词
 
 相比设置新的field来综合要跨的fields，_all和cross_fields避免了信息冗余
-相比_all,可以设置boost
-'''
+相比_all,可以设置boost. 
 
-
-
-''' match 查询
+##  match 查询
 
 match查询的多词查询只是简单地将生成的term查询包含在了一个bool查询中
 
