@@ -2,21 +2,21 @@
 
 ```
 "query" : {
-    "constant_score" : {  # constant_score 查询以非评分模式来执行 term 查询并以一作为统一评分
-        "filter" : {
-            "term" : {  # term 查询会查找我们指定的精确值。它接受一个字段名以及我们希望查找的数值
-                "price" : 20
+    "constant_score": {  # constant_score 查询以非评分模式来执行 term 查询并以一作为统一评分
+        "filter": {
+            "term": {  # term 查询会查找我们指定的精确值。它接受一个字段名以及我们希望查找的数值
+                "price": 20
             }
         }
     }
 }
 
 
-"query" : {
-    "constant_score" : {
-        "filter" : {
-            "terms" : { # 包含关系，价格为20 或30. 此外,如果一个product的price包含20，也会被匹配
-                "price" : [20, 30]
+"query": {
+    "constant_score": {
+        "filter": {
+            "terms": { # 包含关系，价格为20 或30. 此外,如果一个product的price包含20，也会被匹配
+                "price": [20, 30]
             }
         }
     }
