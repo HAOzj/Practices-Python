@@ -1,6 +1,6 @@
 ## 精确匹配. 
 
-'''
+'''shell
 "query" : {
     "constant_score" : {  # constant_score 查询以非评分模式来执行 term 查询并以一作为统一评分
         "filter" : {
@@ -21,7 +21,6 @@
         }
     }
 }
-
 ''' 
 
 ## 范围匹配
@@ -105,9 +104,12 @@ bool 查询是多语句查询的主干
     }
 }
 
+```
+
 ## boost 
 
 直接用boost来调节权重, boost默认为1
+
 '''
 "query": {
     "bool": {
