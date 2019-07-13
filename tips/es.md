@@ -92,12 +92,12 @@ bool 查询是多语句查询的主干
 "query": {
     "bool": { # bool查询, more-matches-is-better
         "should": [   # more
-            { "match": { "title":  "War and Peace" }},
-            { "match": { "author": "Leo Tolstoy"   }},
-            { "bool":  {  # 调节权重用, 为了让translator权重低, 现在title和author以及translator各 1/3
+            {"match": {"title":  "War and Peace"}},
+            {"match": {"author": "Leo Tolstoy"}},
+            {"bool":  {  # 调节权重用, 为了让translator权重低, 现在title和author以及translator各 1/3
                 "should": [
-                    { "match": { "translator": "Constance Garnett" }},
-                    { "match": { "translator": "Louise Maude"      }}
+                    {"match": {"translator": "Constance Garnett"}},
+                    {"match": {"translator": "Louise Maude"}}
                 ]
             }}
         ]
@@ -140,14 +140,10 @@ bool 查询是多语句查询的主干
 
 前两者是字段中心式 field-centric,le dernier是词中心式term-centric. 
 
-### best field 
-不使用bool查询，可以使用dis_max即分离最大化查询（Disjunction Max Query）
-
-分离(Disjunction)的意思是"或"(or)，这与可以把结合(conjunction)理解成"与"(and)相对应。
-
-分离最大化查询(Disjunction Max Query)指的是:将任何与任一查询匹配的文档作为结果返回，但只将最佳匹配的评分作为查询的评分结果返回
-
-dis_max 只使用单个最佳匹配的字段的得分
+### best field  
+搜索结果中应该返回某一个字段匹配到了最多的关键词的文档.
+使用dis_max即分离最大化查询（Disjunction Max Query),意思是:将任何与任一查询匹配的文档作为结果返回，但只将最佳匹配的评分作为查询的评分结果返回.
+dis_max默认只使用单个最佳匹配的字段的得分
 
 ```
 "query": {
@@ -160,7 +156,7 @@ dis_max 只使用单个最佳匹配的字段的得分
 }
 ```
 #### tie_breaker
-tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它的评分方式如下：
+tie_breaker参数提供了一种dis_max和bool之间的折中选择，它的评分方式如下：
 
 获得最佳匹配语句的评分 _score 。
 将其他匹配语句的评分结果与 tie_breaker 相乘。
@@ -217,9 +213,9 @@ tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它�
 ``` 
 
 ### most fields
-
-为了提高召回率,我们通常考虑 提取词干\变音\近义词 等,将同一文本不同处理后放入其它的字段
-这些附加的字段可以看成提高每个文档的相关度评分的信号 signals ，能匹配字段的越多越好
+搜索结果应该返回匹配了更多的字段的文档优先返回回来. 
+比如,为了提高召回率,我们通常考虑提取词干\变音\近义词等,将同一文本不同处理后放入其它的字段
+这些附加的字段可以看成提高每个文档的相关度评分的信号,能匹配字段的越多越好.
 
 ```
 "query": {
@@ -231,18 +227,12 @@ tie_breaker 参数提供了一种 dis_max 和 bool 之间的折中选择，它�
 }
 ```
 
-### cross fields
+### cross fields  
+跨字段查询词.当我们要在多个字段中搜索几个关键词,不要求这些关键词出现在同一个字段时使用.
 
-跨字段查询词
 
-相比设置新的field来综合要跨的fields，_all和cross_fields避免了信息冗余
-相比_all,可以设置boost. 
-
-##  match 查询
-
+##  match查询 
 match查询的多词查询只是简单地将生成的term查询包含在了一个bool查询中
-
-匹配分数和文档长度也有关
 ```
 {
     "match": { "title": "brown fox"}  
