@@ -3,16 +3,16 @@
 
 ### .ini文件格式
 
-[section]
-param=xxx
+[section]  
+param=value
 
 ### 代码  
+```
 import Configparser  
 config_get = ConfigParser.ConfigParser()  
 config_get.read(conf_path)  
-
-xx = config_get.get(section, param) # 可以getint,返回的就是int类型  
-
+val = config_get.get(section, param) # 可以getint,返回的就是int类型  
+```
 
 # yaml
 从.yaml文件中读数据
@@ -21,27 +21,32 @@ xx = config_get.get(section, param) # 可以getint,返回的就是int类型
 
 结构通过空格缩进来展示.列表里的项用"-"来代表,字典里的键值对用":"分隔.
 
-name: junxi
-age: 18
-spouse:
-    name: Rui
-    age: 18
-children:
-    - name: Chen You
-      age: 3
-    - name: Ruo Xi
-      age: 2
+```
+name: junxi  
+age: 18  
+spouse:  
+    name: Rui  
+    age: 18  
+children:  
+    - name: Chen You  
+      age: 3  
+    - name: Ruo Xi  
+      age: 2  
+```
 
 ### 代码 
 
+```
 import yaml
 yaml_conf_dic = yaml.load(open('yaml_example.yaml', 'r'), Loader=yaml.FullLoader))
 spouse_name = yaml_conf_dic['spouse']['name']
+```
 
 # optparse  
 从命令行中读取参数  
 
 ### 代码  
+```
 from optparse import OptionParser  
 optparser = OptionParser()  
 optparser.add_option('-c', # short option  
@@ -54,14 +59,15 @@ optparser.add_option('-c', # short option
 )   
 
 (options, args) = optparser.parse_args() # options储存命名参数,比如options.conf_path, args以列表存储剩余的参数
-
+```
 ### 参考  
 https://docs.python.org/2/library/optparse.html
 
 # argparse  
 和optparse一样,从命令行读取参数  
 
-### 代码
+### 代码  
+```
 import argparse
 parser = argparse.ArgumentParser()
 
@@ -75,4 +81,4 @@ group.add_argument("-q", "--quiet", action="store_true")
 
 args = parser.parse_args()
 nmb = args.nmb 
-
+```
