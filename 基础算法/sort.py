@@ -20,7 +20,7 @@ def fabonacci(n):
         return fabonacci(n-1) + fabonacci(n-2)
 
 
-def dichto(liste, x):
+def dichto(liste, x, print_flag=False):
     """二分插入
 
     Args:
@@ -47,71 +47,76 @@ def dichto(liste, x):
                 l = mid
         liste.insert(r, x)
 
-    for i in range(length + 1):
-        if i == r:
-            print(
-                colored(liste[i], "red"),
-                end=" "
-            )
-        else:
-            print(liste[i], end=" ")
-    print("\n")
+    if print_flag:
+        for i in range(length + 1):
+            if i == r:
+                print(
+                    colored(liste[i], "red"),
+                    end=" "
+                )
+            else:
+                print(liste[i], end=" ")
+        print("\n")
     return liste
 
 
-def insert_sort(liste):
+def insert_sort(liste, print_flag=False):
     """插入排序"""
     length = len(liste)
     for i in range(1, length):
-        liste[:i+1] = dichto(liste[:i], liste[i])
+        liste[:i+1] = dichto(liste[:i], liste[i], print_flag)
 
 
-def shell_sort(liste):
+def shell_sort(liste, print_flag=False):
     """希尔排序"""
     length = len(liste)
     
     d = length//2
     
     while d >= 1:
-        print("d为{}".format(d))
+        if print_flag:
+            print("d为{}".format(d))
         for i in range(d):
-            print(f"第{i+1}组间距为d的子列")
             tmp = liste[i:length:d]
-            insert_sort(tmp)
+            if print_flag:
+                print(f"第{i+1}组间距为d的子列")
+            insert_sort(tmp, print_flag)
             liste[i:length:d] = tmp
         d = d//2
-        print("现在数组变成", liste)
+        if print_flag:
+            print("现在数组变成", liste)
 
 
-def swap(liste, i, j):
+def swap(a, i, j):
     """交换列表中两个元素的位置
 
     Args:
+        a(iterables) :- 列表
         i, j(int) :- 要交换位置的两个元素的索引
     """
-    liste[i], liste[j] = liste[j], liste[i]
+    a[i], a[j] = a[j], a[i]
 
 
-def bubble_sort(liste):
+def bubble_sort(liste, print_flag=False):
     """冒泡排序"""
     length = len(liste)
     for i in range(length-1):
         for j in range(length-i-1):
             if liste[j] > liste[j+1]:
                 swap(liste, j, j+1)
+        if print_flag:
+            for k in range(length):
+                if k == length-i-1:
+                    print(
+                        colored(liste[k], "red"),
+                        end=" "
+                    )
+                else:
+                    print(liste[k], end=" ")
+            print("\n")
 
-        for k in range(length):
-            if k == length-i-1:
-                print(
-                    colored(liste[k], "red"), 
-                    end=" "
-                )
-            else:
-                print(liste[k], end=" ")
-        print("\n")
 
-
-def partition(liste, left, right):
+def partition(liste, left, right, print_flag):
     """
     以liste[left]为pivot,
     将liste[left:right+1]排成[小于等于pivot的, pivot, 大于pivot的]，
@@ -126,34 +131,36 @@ def partition(liste, left, right):
     for i in range(left+1, right+1):
         if liste[i] <= pivot:
             swap(liste, i, position_pivot)
-            position_pivot = i
+            position_pivot += 1
+            swap(liste, i, position_pivot)
 
-    print("\n")
-    for j in range(len(liste)):
-        if j < left or j > right:
-            print(liste[j], end=" ")
-        elif j == position_pivot:
-            print(colored(liste[j], "red"), end=" ")
-        else:
-            print(colored(liste[j], "green"), end=" ")
+    if print_flag:
+        print("\n")
+        for j in range(len(liste)):
+            if j < left or j > right:
+                print(liste[j], end=" ")
+            elif j == position_pivot:
+                print(colored(liste[j], "red"), end=" ")
+            else:
+                print(colored(liste[j], "green"), end=" ")
         
     return position_pivot
         
 
-def quick_sort_recursive(liste, left, right):
+def quick_sort_recursive(liste, left, right, print_flag=False):
     """快排的递归"""
-    if right-left > 0: # 这里控制迭代的break
-        position_pivot = partition(liste, left, right)
-        quick_sort_recursive(liste, left, position_pivot-1)
-        quick_sort_recursive(liste, position_pivot+1, right)
+    if right > left:  # 这里控制迭代的break
+        position_pivot = partition(liste, left, right, print_flag)
+        quick_sort_recursive(liste, left, position_pivot-1, print_flag)
+        quick_sort_recursive(liste, position_pivot+1, right, print_flag)
     
 
-def quick_sort(liste):
+def quick_sort(liste, print_flag=False):
     """快排"""
-    quick_sort_recursive(liste, 0, len(liste)-1)
+    quick_sort_recursive(liste, 0, len(liste)-1, print_flag)
 
 
-def merge(liste, left, mid,  right):
+def merge(liste, left, mid,  right, print_flag):
     """归并
 
     mid - left > 0
@@ -181,27 +188,30 @@ def merge(liste, left, mid,  right):
             list3.append(list2.pop(0))
 
     liste[left:right+1] = list3
-        
-    print("\n")
-    for j in range(len(liste)):
-        if j < left or j > right:
-            print(liste[j], end=" ")
-        else:
-            print(colored(liste[j], "green"), end=" ")
+
+    if print_flag:
+        print("\n")
+        for j in range(len(liste)):
+            if j < left or j > right:
+                print(liste[j], end=" ")
+            else:
+                print(colored(liste[j], "green"), end=" ")
             
         
-def merge_sort(liste):
+def merge_sort(liste, print_flag=False):
     """归并排序"""
     length = len(liste)
     d = 1
     while d <= length: # d为要合并的列表的大小
         num2merge = ceil(length/d/2)
-        print("\n要合并的列表的数量 : {}".format(num2merge))
+        if print_flag:
+            print("\n要合并的列表的数量 : {}".format(num2merge))
         for i in range(num2merge):
             merge(
                 liste, 
                 left=i*2*d, 
                 mid=min((i*2+1)*d, length-1),
-                right=min((i*2+2)*d-1, length-1)
+                right=min((i*2+2)*d-1, length-1),
+                print_flag=print_flag
             )
         d *= 2
