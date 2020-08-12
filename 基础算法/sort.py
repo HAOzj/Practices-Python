@@ -202,7 +202,7 @@ def merge_sort(liste, print_flag=False):
     """归并排序"""
     length = len(liste)
     d = 1
-    while d <= length: # d为要合并的列表的大小
+    while d <= length:  # d为要合并的列表的大小
         num2merge = ceil(length/d/2)
         if print_flag:
             print("\n要合并的列表的数量 : {}".format(num2merge))
