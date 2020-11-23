@@ -66,3 +66,35 @@ HZJ = df[df["full_name" == "HZJ"]]
 df.set_index("name", inplace=True)
 Mio = df[["HZJ", "WBB"], ["name", "age"]]  # 取索引为"HZJ"或"WBB"的,名字和年纪的列
 ```
+
+## udf
+
+主要是三个函数
+- apply, 多行为输入
+- map, 单行为输入
+- applymap, 对每个元素
+
+```
+def get_wilson_score(series):
+    expo = series["expo"]
+    click = series["click"]
+    return wilson_score(click, expo)
+    
+
+def wilson_score(pos, total, z=1.96):
+    """
+    威尔逊得分计算函数
+    :param pos: 正例数
+    :param total: 总数
+    :param p_z: 正太分布的分位数
+    :return: 威尔逊得分
+    """
+    pos_rat = pos * 1. / total * 1.  # 正例比率
+    score = (pos_rat + (np.square(z) / (2. * total))
+             - ((z / (2. * total)) * np.sqrt(4. * total * (1. - pos_rat) * pos_rat + np.square(z)))) / \
+    (1. + np.square(z) / total)
+    return score * 100
+
+df["ctr"] = df_tmp["ctr"].map(convert2float)
+df["ctr_wilson"] = df.apply(get_wilson_score, axis=1)
+```
