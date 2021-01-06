@@ -29,6 +29,11 @@ db = psycopg2.connect(
 df  = pd.read_sql(sql, self.db)
 ```
 
+- 读取csv文件
+```
+df = pd.read_csv(file_path, encoding="gbk")
+```
+
 ## 设立索引
 设立索引方便我们对DF进行搜索和合并等操作
 
@@ -37,7 +42,27 @@ df.set_index()
 df.reset_index()
 ```
 
+## 重命名和删除字段
+```
+# 传入字典来重命名
+df = df.rename(columns={"曝光pv": "expo", "点击pv": "click", "点击率": "ctr"})
 
+# 删除字段
+df = df.drop(columns=["机型", "内容分类", "频道名称"])
+```
+
+## 多行排序
+```
+df.sort_values(by=["expo", "click"], ascending=[False, True], inplace=True)
+
+# 如果新的索引
+df.reset_index(inplace=True, drop=True)
+```
+
+## 填充空值
+```
+df = df.fillna(0)
+```
 
 ## 筛选数据
 
@@ -94,7 +119,25 @@ def wilson_score(pos, total, z=1.96):
              - ((z / (2. * total)) * np.sqrt(4. * total * (1. - pos_rat) * pos_rat + np.square(z)))) / \
     (1. + np.square(z) / total)
     return score * 100
+    
+def convert2float(x):
+    if isinstance(x, str):
+        x = x.strip("%")
+    return float(x)
 
-df["ctr"] = df_tmp["ctr"].map(convert2float)
+df["ctr"] = df["ctr"].map(convert2float)
 df["ctr_wilson"] = df.apply(get_wilson_score, axis=1)
+```
+
+## 聚合函数
+```
+import numpy as np
+
+# sum
+expo = np.sum(df["expo"])
+
+# 累计百分比,百分比
+field = "expo"
+df[f"cumsum_{field}"] = df[field].cumsum(axis=0) / sum(df[field])
+df[f"pct_{field}"] = df[field] / sum(df[field])
 ```
