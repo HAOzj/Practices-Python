@@ -51,7 +51,17 @@ def print_run_time(func):
     '''
     def wrapper(*args, **kw):
         local_time = time.time()
-        func(*args, **kw)
-        print 'Current function : {function}, time used : {temps}'.format(
-            function=func.__name__, temps=time.time() - local_time)
+        res = func(*args, **kw)
+        print('Current function : {function}, time used : {temps}'.format(
+            function=func.__name__, temps=time.time() - local_time))
+        return res
     return wrapper
+
+
+import unicodedata
+import string
+def shave_marks(txt):
+    """去掉全部变音符号"""
+    norm_txt = unicodedata.normalize('NFD', txt)
+    shaved = ''.join(c for c in norm_txt if not unicodedata.combining(c))
+    return unicodedata.normalize('NFC', shaved)

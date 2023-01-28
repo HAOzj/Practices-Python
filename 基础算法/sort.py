@@ -20,7 +20,7 @@ def fabonacci(n):
         return fabonacci(n-1) + fabonacci(n-2)
 
 
-def dichto(liste, x, print_flag=False):
+def bisect(liste, x, print_flag=False):
     """二分插入
 
     Args:
@@ -64,7 +64,7 @@ def insert_sort(liste, print_flag=False):
     """插入排序"""
     length = len(liste)
     for i in range(1, length):
-        liste[:i+1] = dichto(liste[:i], liste[i], print_flag)
+        liste[:i+1] = bisect(liste[:i], liste[i], print_flag)
 
 
 def shell_sort(liste, print_flag=False):
