@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/tmp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent_python/chapter_6.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent_python/promotions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent_python/promotions/promo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echaffaudage/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/echaffaudage/utils/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leetcode/segmentTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/segmentTree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp.py" beforeDir="false" afterPath="$PROJECT_DIR$/tmp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/.ipynb_checkpoints/未命名-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/.ipynb_checkpoints/根据前序中序来推测后序-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/.ipynb_checkpoints/根据前序中序来推测后序-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/二叉排序树.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/二叉排序树.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/排序算法sorting_algo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/排序算法sorting_algo.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/数组.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/数组.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/最大堆和堆排序.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/最大堆和堆排序.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/未命名.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/基础算法/根据前序中序来推测后序.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/基础算法/根据前序中序来推测后序.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +16,13 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Practices_Python$sort.coverage" NAME="sort Coverage Results" MODIFIED="1571541240599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/基础算法" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -117,8 +115,14 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.tmp">
-    <configuration name="GreyForcast" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fluent_python/promotions" />
+      <recent name="$PROJECT_DIR$/fluent_python" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.chapter_6">
+    <configuration name="chapter_6" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Practices-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -126,11 +130,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fluent_python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GreyForcast.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/chapter_6.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,7 +164,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="maxHeap" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="promo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Practices-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,11 +172,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fluent_python/promotions" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/maxHeap.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/promotions/promo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -225,11 +229,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.chapter_6" />
+        <item itemvalue="Python.promo" />
         <item itemvalue="Python.tmp" />
         <item itemvalue="Python.tmp (1)" />
         <item itemvalue="Python.crawler_meituan_poi" />
-        <item itemvalue="Python.maxHeap" />
-        <item itemvalue="Python.GreyForcast" />
       </list>
     </recent_temporary>
   </component>

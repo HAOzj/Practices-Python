@@ -23,7 +23,6 @@ class SegmentTree(object):
             return Node(start, end, self.data[start])
         
 
-
 def main():
     nums = [i for i in range(5)]
     print(nums)
