@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fluent_python/chapter_6.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent_python/promotions/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent_python/promotions/promo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent_python/weak_ref.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/segmentTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/segmentTree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/tmp.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +118,7 @@
       <recent name="$PROJECT_DIR$/fluent_python" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.chapter_6">
+  <component name="RunManager" selected="Python.weak_ref">
     <configuration name="chapter_6" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Practices-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,27 +132,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/chapter_6.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="crawler_meituan_poi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Practices-Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawler_meituan_poi.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -227,13 +203,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="weak_ref" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Practices-Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fluent_python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/weak_ref.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.weak_ref" />
         <item itemvalue="Python.chapter_6" />
         <item itemvalue="Python.promo" />
         <item itemvalue="Python.tmp" />
         <item itemvalue="Python.tmp (1)" />
-        <item itemvalue="Python.crawler_meituan_poi" />
       </list>
     </recent_temporary>
   </component>
