@@ -1,7 +1,10 @@
 # -*- coding:utf-8 -*-
 import weakref
+
+
 class Name(str):
     __slots__ = ('__weakref__',)
+
 
 class Cheese:
     def __init__(self, kind):
