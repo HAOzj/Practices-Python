@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/convert_to_excel_predicate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent_python/tmp.py" beforeDir="false" afterPath="$PROJECT_DIR$/fluent_python/tmp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent_python/weak_ref.py" beforeDir="false" afterPath="$PROJECT_DIR$/fluent_python/weak_ref.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent_python/chapter_10.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/fluent_python/chapter_10.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/tmp.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +104,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -301,6 +302,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/基础算法/哈希表.ipynb">
