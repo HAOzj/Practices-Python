@@ -1,0 +1,96 @@
+# -*- coding:utf-8 -*-
+"""
+Created on May 03 2023
+
+@author : woshihaozhaojun@sina.com
+"""
+import math
+import pygame
+from conf import (
+    RADIUS,
+)
+from edge import Edge
+from vertex import Vertex
+
+
+class Hexagon(pygame.sprite.Sprite):
+    """hexagonal tile
+
+    Attrs:
+        no: rolling number
+        res: resource type, options ['wool', 'lumber', 'wheat', 'ore', 'brick', 'desert']
+        vertices: six vertices, where players can build settlements
+        edges: six lines, where players can build road
+    """
+    RADIUS = RADIUS
+    RESOURCE_TYPES = 'wool lumber wheat ore brick desert'.split(' ')
+    RESOURCE_IMAGES = [pygame.image.load(f"../images/catan/{res}.jpeg") for res in RESOURCE_TYPES]
+    TIPO2IMAGE = dict(zip(RESOURCE_TYPES, RESOURCE_IMAGES))
+    G3 = math.sqrt(3)
+    WIDTH, HEIGHT = RADIUS * 2 * G3 - 2 * Edge.WIDTH, 2 * RADIUS - 2 * Edge.WIDTH
+    ANGLES = [i * math.pi / 3 + math.pi / 6 for i in range(6)]
+    INIT_COLOR = 'white'
+
+    def __init__(self, no, resource_type, center_x, center_y, screen):
+        super().__init__()
+        self.no = no
+        self.screen = screen
+        self.center_x, self.center_y = center_x, center_y
+        self.res = resource_type
+        self.image = self.TIPO2IMAGE[self.res]
+        self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
+        self.rect = pygame.rect.Rect(center_x - self.WIDTH / 2, center_y - self.RADIUS, self.WIDTH, self.HEIGHT)
+        self.font = pygame.font.SysFont('Arial', 25)
+
+        self.vertices, self.edges = None, None
+        self._init_vertices()
+        self._init_edges()
+
+    def update(self):
+        pass
+
+    def _init_vertices(self):
+        self.vertices = [
+            Vertex(
+                x=self.center_x + self.RADIUS * 2 * math.cos(angle),
+                y=self.center_y + self.RADIUS * 2 * math.sin(angle),
+                screen=self.screen,
+                color=self.INIT_COLOR
+            )
+            for angle in self.ANGLES
+        ]
+
+    def _init_edges(self):
+        self.edges = [
+            Edge(
+                start_pos=self.vertices[i].center,
+                end_pos=self.vertices[(i + 1) % 6].center,
+                color=self.INIT_COLOR
+            )
+            for i in range(6)
+        ]
+
+    def show_edges(self):
+        for edge in self.edges:
+            edge.show(screen=self.screen)
+
+    def show_vertices(self):
+        for vertex in self.vertices:
+            vertex.show(screen=self.screen)
+
+    def change_edge_color(self, i, color):
+        self.edges[i].change_color(color)
+
+    def show_no(self, color='red'):
+        """显示在六边形的上半部"""
+        self.screen.blit(
+            self.font.render(f"{self.no}", True, pygame.Color(color)),
+            (self.rect.x + self.G3 * self.RADIUS, self.rect.y - self.RADIUS / 2)
+        )
+
+    def chosen_one(self, color='blue', text='THIS!'):
+        """被选中的tile上方显示color色的text字样"""
+        self.screen.blit(
+            self.font.render(text, True, pygame.Color(color)),
+            (self.rect.x + self.G3 * self.RADIUS, self.rect.y - self.RADIUS)
+        )

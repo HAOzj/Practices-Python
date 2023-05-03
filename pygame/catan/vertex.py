@@ -1,0 +1,30 @@
+import pygame
+
+from util import draw_colorized_contour
+
+
+class Vertex(pygame.sprite.Sprite):
+    WIDTH, HEIGHT = 15, 15
+
+    def __init__(self, x, y, screen, color=None):
+        super().__init__()
+        x, y = int(x), int(y)
+        self.screen = screen
+        self.center = (x, y)
+        self.rect = pygame.rect.Rect(x, y, self.WIDTH, self.HEIGHT)
+        self.image = pygame.image.load("../images/catan/empty.jpeg")
+        self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
+        self.color = color
+
+    def show(self):
+        # colorize the contour
+        _color = pygame.Color(self.color)
+        draw_colorized_contour(
+            rect=self.rect,
+            width=int(self.WIDTH / 5),
+            color=_color,
+            screen=self.screen
+        )
+
+    def change_color(self, color):
+        self.color = color
