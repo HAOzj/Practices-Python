@@ -38,3 +38,9 @@ class Edge():
 
     def change_color(self, color):
         self.color = color
+
+    def __hash__(self):
+        return self.mid
+
+    def __eq__(self, other):
+        return self.mid == other.mid 

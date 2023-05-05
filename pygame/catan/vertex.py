@@ -18,7 +18,7 @@ class Vertex(pygame.sprite.Sprite):
         super().__init__()
         x, y = int(x), int(y)
         self.screen = screen
-        self.center = (x, y)
+        self.topleft = (x, y)
         self.rect = pygame.rect.Rect(x, y, self.WIDTH, self.HEIGHT)
         self.image = pygame.image.load("../images/catan/empty.jpeg")
         self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
@@ -37,3 +37,9 @@ class Vertex(pygame.sprite.Sprite):
 
     def change_color(self, color):
         self.color = color
+
+    def __hash__(self):
+        return self.topleft
+
+    def __eq__(self, other):
+        return self.topleft == other.topleft

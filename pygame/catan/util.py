@@ -40,25 +40,25 @@ def drop_duplicate(hexs):
         hexs(list):
 
     Returns:
-        center2vertex: dict to map center attribute to Vertex
+        topleft2vertex, dict mapping center attribute to Vertex
     """
     # drop duplicate edges and vertices
-    center2vertex, mid2edge = dict(), dict()
+    topleft2vertex, mid2edge = dict(), dict()
     center2index = dict()
 
     for i, tile in enumerate(hexs):
         for j, vertex in enumerate(tile.vertices):
-            center2vertex[vertex.center] = vertex
-            center2index[vertex.center] = (i, j)
+            topleft2vertex[vertex.topleft] = vertex
+            center2index[vertex.topleft] = (i, j)
         for edge in tile.edges:
             mid2edge[edge.mid] = edge
 
     for tile in hexs:
         vertices = tile.vertices
         for i, vertex in enumerate(vertices):
-            vertices[i] = center2vertex[vertex.center]
+            vertices[i] = topleft2vertex[vertex.topleft]
         edges = tile.edges
         for i, edge in enumerate(edges):
             edges[i] = mid2edge[edge.mid]
 
-    return center2vertex
+    return topleft2vertex
