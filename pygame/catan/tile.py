@@ -16,11 +16,16 @@ from vertex import Vertex
 class Hexagon(pygame.sprite.Sprite):
     """hexagonal tile
 
-    Attrs:
-        no: rolling number
-        res: resource type, options ['wool', 'lumber', 'wheat', 'ore', 'brick', 'desert']
-        vertices: six vertices, where players can build settlements
-        edges: six lines, where players can build road
+    The building block of the catan world, each growing one type of resource
+    and representing one number between 2 and 12.
+
+    Attributes:
+        no(int): rolling number
+        res(str): resource type, options ['wool', 'lumber', 'wheat', 'ore', 'brick', 'desert']
+        screen(pygame.surface.Surface): screen on which self is shown
+        center_x, center_y(float): coordinate of center
+        edges(list[Edge]): six lines, where players can build road
+        vertices(list[Vertex]): six vertices, where players can build settlements
     """
     RADIUS = RADIUS
     RESOURCE_TYPES = 'wool lumber wheat ore brick desert'.split(' ')
@@ -94,3 +99,9 @@ class Hexagon(pygame.sprite.Sprite):
             self.font.render(text, True, pygame.Color(color)),
             (self.rect.x + self.G3 * self.RADIUS, self.rect.y - self.RADIUS)
         )
+
+    def befriend_vertices_and_edges(self):
+        """update the edges of each vertex, adjacents and incidents of each edge
+        """
+        # TODO
+        pass

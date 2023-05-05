@@ -34,6 +34,14 @@ def init_layout():
 
 
 def drop_duplicate(hexs):
+    """Drop overlapping vertices and edges
+
+    Args:
+        hexs(list):
+
+    Returns:
+        center2vertex: dict to map center attribute to Vertex
+    """
     # drop duplicate edges and vertices
     center2vertex, mid2edge = dict(), dict()
     center2index = dict()

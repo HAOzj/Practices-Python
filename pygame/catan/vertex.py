@@ -4,6 +4,14 @@ from util import draw_colorized_contour
 
 
 class Vertex(pygame.sprite.Sprite):
+    """
+
+    Attributes:
+        x, y(float): coordinate of the top left
+        color(str): color representing the owner
+        screen(pygame.surface.Surface): the screen on which self is shown
+        edges(list): the list of edges that are incident on self
+    """
     WIDTH, HEIGHT = 15, 15
 
     def __init__(self, x, y, screen, color=None):
@@ -15,6 +23,7 @@ class Vertex(pygame.sprite.Sprite):
         self.image = pygame.image.load("../images/catan/empty.jpeg")
         self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
         self.color = color
+        self.edges = list()
 
     def show(self):
         # colorize the contour

@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pygame/catan/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pygame/catan/edge.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pygame/catan/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pygame/catan/player.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pygame/catan/tile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pygame/catan/util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pygame/catan/vertex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Practices-Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Practices-Python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pygame/catan.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/edge.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/edge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/tile.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/tile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pygame/catan/vertex.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/vertex.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,12 +116,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "advanced.settings"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/fluent_python/promotions" />
@@ -307,6 +303,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

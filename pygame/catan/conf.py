@@ -1,3 +1,9 @@
+# -*- coding:utf-8 -*-
+"""
+Created on May 03 2023
+
+@author : woshihaozhaojun@sina.com
+"""
 # 屏幕
 WIDTH, HEIGHT = 1000, 800
 BACKGROUND = (200, 200, 200)

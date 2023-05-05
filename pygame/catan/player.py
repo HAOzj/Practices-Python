@@ -14,6 +14,14 @@ from util import draw_colorized_contour
 
 class Player(pygame.sprite.Sprite):
     """player
+
+    Rolling dices and build road and settlements to win
+
+    Attributes:
+        screen(pygame.surface.Surface): screen on which self is shown
+        color(str): color representing self
+        resources(dict): current resources
+        name(str): name
     """
     WIDTH, HEIGHT = 30, 30
     ROAD = ['brick', 'lumber']

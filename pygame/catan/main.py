@@ -69,6 +69,7 @@ def init_tiles(screen):
 
 
 def roll(joueur: Player, no2tiles: dict, color2player: dict, turno: int):
+    """roll two dices and update players' resources"""
     no = joueur.roll_dice()
     tiles = no2tiles[no]
     for tile in tiles:
