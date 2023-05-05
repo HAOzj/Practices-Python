@@ -22,6 +22,8 @@ class Player(pygame.sprite.Sprite):
         color(str): color representing self
         resources(dict): current resources
         name(str): name
+        edges(Edge): owned Edge[s]
+        vertices(Vertex): owned Vertex[s]
     """
     WIDTH, HEIGHT = 30, 30
     ROAD = ['brick', 'lumber']
@@ -37,6 +39,7 @@ class Player(pygame.sprite.Sprite):
         self.resources = defaultdict(int)
         self.name = name
         self.font = pygame.font.SysFont('Arial', 12)
+        self.edges, self.vertices = set(), set()
 
         for res in self.VILLAGE + self.ROAD:
             self.__add__(res)
@@ -65,10 +68,44 @@ class Player(pygame.sprite.Sprite):
             return True
         return False
 
-    def warning(self, obj='road'):
+    def demolish_village(self, village, color):
+        if village.color == self.color:
+            for res in self.VILLAGE:
+                self + res
+            village.change_color(color)
+        else:
+            self.screen.blit(
+                source=self.font.render(
+                    "this village is not yours",
+                    True,
+                    pygame.Color(self.color)
+                ),
+                dest=(self.rect.x, self.rect.y - 10)
+            )
+
+
+    def demolish_road(self, road, color):
+        if road.color == self.color:
+            for res in self.ROAD:
+                self + res
+            road.change_color(color)
+        else:
+            self.screen.blit(
+                source=self.font.render(
+                    "this road is not yours",
+                    True,
+                    pygame.Color(self.color)
+                ),
+                dest=(self.rect.x, self.rect.y - 10)
+            )
+
+    def warning(self, obj='road', is_enclave: bool = False, is_overcrowded: bool = False, is_occupied: bool = False):
+        text = "no connected settlement or road" if is_enclave else "no enough res for " + obj
+        if is_overcrowded: text = "there is already settlement in vicinity"
+        if is_occupied: text = f" this {obj} is already occupied"
         self.screen.blit(
             source=self.font.render(
-                "no enough res for " + obj,
+                text,
                 True,
                 pygame.Color(self.color)
             ),
@@ -89,5 +126,5 @@ class Player(pygame.sprite.Sprite):
                 True,
                 pygame.Color(self.color)
             ),
-            dest=(self.rect.x, self.rect.y + self.HEIGHT)
+            dest=(self.rect.x + self.WIDTH, self.rect.y + self.HEIGHT)
         )

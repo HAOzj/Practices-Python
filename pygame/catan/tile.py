@@ -68,8 +68,8 @@ class Hexagon(pygame.sprite.Sprite):
     def _init_edges(self):
         self.edges = [
             Edge(
-                start_pos=self.vertices[i].center,
-                end_pos=self.vertices[(i + 1) % 6].center,
+                start_pos=self.vertices[i].topleft,
+                end_pos=self.vertices[(i + 1) % 6].topleft,
                 color=self.INIT_COLOR
             )
             for i in range(6)
@@ -86,6 +86,9 @@ class Hexagon(pygame.sprite.Sprite):
     def change_edge_color(self, i, color):
         self.edges[i].change_color(color)
 
+    def change_vertex_color(self, i, color):
+        self.vertices[i].change_color(color)
+
     def show_no(self, color='red'):
         """显示在六边形的上半部"""
         self.screen.blit(
@@ -100,8 +103,17 @@ class Hexagon(pygame.sprite.Sprite):
             (self.rect.x + self.G3 * self.RADIUS, self.rect.y - self.RADIUS)
         )
 
-    def befriend_vertices_and_edges(self):
+    def befriend_vertices_and_edges(self, vertex2edge: dict, vertex2adj: dict, edge2adj: dict, edge2incident: dict):
         """update the edges of each vertex, adjacents and incidents of each edge
         """
-        # TODO
-        pass
+        for i, vertex in enumerate(self.vertices):
+            vertex2edge.setdefault(vertex, set()).add(self.edges[i])
+            vertex2edge.setdefault(vertex, set()).add(self.edges[i - 1])
+            vertex2adj.setdefault(vertex, set()).add(self.vertices[i - 1])
+            vertex2adj.setdefault(vertex, set()).add(self.vertices[(i + 1) % 6])
+
+        for i, edge in enumerate(self.edges):
+            edge2adj.setdefault(edge, set()).add(self.edges[i-1])
+            edge2adj.setdefault(edge, set()).add(self.edges[(i + 1) % 6])
+            edge2incident.setdefault(edge, set()).add(self.vertices[i])
+            edge2incident.setdefault(edge, set()).add(self.vertices[(i + 1) % 6])

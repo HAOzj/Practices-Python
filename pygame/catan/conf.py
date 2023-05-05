@@ -17,3 +17,6 @@ names = ['小蓝', '小紫', '小红', '小绿']
 colors = ['blue', 'purple', 'red', 'green']
 xs = [0] * 4
 ys = [0, HEIGHT / 4, HEIGHT / 2, HEIGHT / 4 * 3]
+
+for i in range(len(ys)):
+    ys[i] += 30

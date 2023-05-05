@@ -13,10 +13,12 @@ from conf import (
     CAPTION, WIDTH, HEIGHT, BACKGROUND,
     xs, ys, colors, names
 )
+from edge import Edge
+from vertex import Vertex
 from player import Player
 from tile import Hexagon
 from util import (
-    init_layout, drop_duplicate
+    init_layout, drop_duplicate_and_befriend_edge_vertex
 )
 
 
@@ -81,6 +83,69 @@ def roll(joueur: Player, no2tiles: dict, color2player: dict, turno: int):
     print(f"{turno} round, {joueur.name} has rolled {no}")
 
 
+def build_road(player: Player, tile: Hexagon, j: int, edge2edge: dict, edge2ver: dict, is_check: bool = True):
+    """建造道路
+
+    如果需要检查，则验证附近是否已经有建筑或者道路；
+    若没有则提示这是飞地
+    """
+    road = tile.edges[j - 1]
+    if road.color != Hexagon.INIT_COLOR:
+        player.warning(is_occupied=True)
+    elif not is_check or any(
+            [adj.color == player.color for adj in edge2edge[road]] +
+            [adj.color == player.color for adj in edge2ver[road]]
+    ):
+        if player.build_road():
+            tile.change_edge_color(j - 1, player.color)
+        else:
+            player.warning(obj='road')
+    else:
+        player.warning(is_enclave=True)
+    sleep(0.5)
+
+
+def build_village(player: Player, tile: Hexagon, j: int, ver2edge: dict, ver2ver: dict, is_check: bool = True):
+    """建造村庄
+
+    若需要检查，则检查是否有相连的道路；
+    再检查邻近是否已经有建筑
+
+    Args:
+        player:
+        tile:
+        j: 角在tile的序号，从1开始
+        ver2edge: 角和连接边的关系
+        ver2ver: 角和相邻角的关系
+        is_check: 是否检查
+    """
+    village = tile.vertices[j - 1]
+    if village.color != Hexagon.INIT_COLOR:
+        player.warning(is_occupied=True)
+    elif not is_check or any([edge.color == player.color for edge in ver2edge[village]]):
+        if any([ver.color != Hexagon.INIT_COLOR for ver in ver2ver[village]]):
+            player.warning(is_overcrowded=True)
+        elif player.build_village():
+            tile.change_vertex_color(j - 1, player.color)
+        else:
+            player.warning(obj='village')
+    else:
+        player.warning(is_enclave=True)
+    sleep(0.5)
+
+
+def demolish_road(player: Player, tile: Hexagon, j: int):
+    road = tile.edges[j - 1]
+    player.demolish_road(road=road, color=Hexagon.INIT_COLOR)
+    sleep(0.5)
+
+
+def demolish_village(player: Player, tile: Hexagon, j: int):
+    village = tile.vertices[j - 1]
+    player.demolish_village(village=village, color=Hexagon.INIT_COLOR)
+    sleep(0.5)
+
+
 def main():
     # 初始化游戏
     pygame.init()
@@ -100,7 +165,10 @@ def main():
     ])
 
     color2player = dict([(player.color, player) for player in players])
-    center2vertex = drop_duplicate(tiles)
+    ver2edge, ver2ver, edge2edge, edge2ver = drop_duplicate_and_befriend_edge_vertex(tiles)
+
+    # for v, es in ver2edge.items():
+    #     print(v.topleft, [e.mid for e in es])
 
     # 初始化精灵组
     hex_group = pygame.sprite.Group()
@@ -110,7 +178,7 @@ def main():
         hex_group.add(tile)
     for player in players:
         player_group.add(player)
-    for vertex in center2vertex.values():
+    for vertex in ver2edge:
         ver_group.add(vertex)
 
     # 保持游戏运行状态(游戏循环）
@@ -161,7 +229,7 @@ def main():
                 tile.show_edges()
                 tile.show_no()
 
-            tiles[i % len(tiles)].chosen_one(color=player.color)
+            tiles[i].chosen_one(color=player.color)
 
             keys = pygame.key.get_pressed()
             # 左右键来调整要操作的tile
@@ -170,6 +238,12 @@ def main():
                 sleep(0.5)
             elif keys[pygame.K_RIGHT]:
                 i += 1
+                sleep(0.5)
+            elif keys[pygame.K_UP]:
+                i -= 5
+                sleep(0.5)
+            elif keys[pygame.K_DOWN]:
+                i += 5
                 sleep(0.5)
             elif keys[pygame.K_1]:
                 j = 1
@@ -184,17 +258,13 @@ def main():
             elif keys[pygame.K_6]:
                 j = 6
             elif keys[pygame.K_r]:
-                if player.build_road():
-                    tiles[i % len(tiles)].change_edge_color(j - 1, player.color)
-                else:
-                    player.warning(obj='road')
-                sleep(0.5)
+                build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=i > 8)
             elif keys[pygame.K_v]:
-                if player.build_village():
-                    tiles[i % len(tiles)].vertices[j - 1].change_color(player.color)
-                else:
-                    player.warning(obj='village')
-                sleep(0.5)
+                build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=i > 8)
+            elif keys[pygame.K_t]:
+                demolish_road(player, tile=tiles[i], j=j)
+            elif keys[pygame.K_b]:
+                demolish_village(player, tile=tiles[i], j=j)
 
             for jugador in players:
                 jugador.show_card()

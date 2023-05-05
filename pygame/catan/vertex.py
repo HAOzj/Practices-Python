@@ -39,7 +39,7 @@ class Vertex(pygame.sprite.Sprite):
         self.color = color
 
     def __hash__(self):
-        return self.topleft
+        return hash(self.topleft)
 
     def __eq__(self, other):
         return self.topleft == other.topleft

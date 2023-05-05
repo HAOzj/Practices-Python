@@ -33,14 +33,17 @@ def init_layout():
     return layout
 
 
-def drop_duplicate(hexs):
+def drop_duplicate_and_befriend_edge_vertex(hexs):
     """Drop overlapping vertices and edges
 
     Args:
         hexs(list):
 
     Returns:
-        topleft2vertex, dict mapping center attribute to Vertex
+        ver2edge, dict mapping Vertex to its Edge[s]
+        ver2ver, dict mapping Vertex to its adjacent Vertices
+        edge2edge, dict mapping Edge to its adjacent Edge[s]
+        edge2ver, dict mapping Edge to the Vertex[s] that it is incident on
     """
     # drop duplicate edges and vertices
     topleft2vertex, mid2edge = dict(), dict()
@@ -61,4 +64,7 @@ def drop_duplicate(hexs):
         for i, edge in enumerate(edges):
             edges[i] = mid2edge[edge.mid]
 
-    return topleft2vertex
+    ver2edge, ver2ver, edge2edge, edge2ver = dict(), dict(), dict(), dict()
+    for tile in hexs:
+        tile.befriend_vertices_and_edges(ver2edge, ver2ver, edge2edge, edge2ver)
+    return ver2edge, ver2ver, edge2edge, edge2ver
