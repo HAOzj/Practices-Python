@@ -5,9 +5,11 @@ Created on May 03 2023
 @author : woshihaozhaojun@sina.com
 """
 import math
+
 import pygame
+
 from conf import (
-    RADIUS,
+    RADIUS, INIT_COLOR
 )
 from edge import Edge
 from vertex import Vertex
@@ -34,7 +36,7 @@ class Hexagon(pygame.sprite.Sprite):
     G3 = math.sqrt(3)
     WIDTH, HEIGHT = RADIUS * 2 * G3 - 2 * Edge.WIDTH, 2 * RADIUS - 2 * Edge.WIDTH
     ANGLES = [i * math.pi / 3 + math.pi / 6 for i in range(6)]
-    INIT_COLOR = 'white'
+    INIT_COLOR = INIT_COLOR
 
     def __init__(self, no, resource_type, center_x, center_y, screen):
         super().__init__()
@@ -89,6 +91,9 @@ class Hexagon(pygame.sprite.Sprite):
     def change_vertex_color(self, i, color):
         self.vertices[i].change_color(color)
 
+    def upgrade_vertex(self, i):
+        self.vertices[i].upgrade()
+
     def show_no(self, color='red'):
         """显示在六边形的上半部"""
         self.screen.blit(
@@ -113,7 +118,7 @@ class Hexagon(pygame.sprite.Sprite):
             vertex2adj.setdefault(vertex, set()).add(self.vertices[(i + 1) % 6])
 
         for i, edge in enumerate(self.edges):
-            edge2adj.setdefault(edge, set()).add(self.edges[i-1])
+            edge2adj.setdefault(edge, set()).add(self.edges[i - 1])
             edge2adj.setdefault(edge, set()).add(self.edges[(i + 1) % 6])
             edge2incident.setdefault(edge, set()).add(self.vertices[i])
             edge2incident.setdefault(edge, set()).add(self.vertices[(i + 1) % 6])

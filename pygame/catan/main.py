@@ -10,12 +10,12 @@ from time import sleep
 import pygame
 
 from conf import (
-    CAPTION, WIDTH, HEIGHT, BACKGROUND,
+    CAPTION, WIDTH, HEIGHT, BACKGROUND, WIN_POINT,
     xs, ys, colors, names
 )
-from edge import Edge
-from vertex import Vertex
-from player import Player
+from player import (
+    Player, WarningMessage
+)
 from tile import Hexagon
 from util import (
     init_layout, drop_duplicate_and_befriend_edge_vertex
@@ -27,7 +27,8 @@ def init_resource(hexs, color2player):
     for tile in hexs:
         resource = tile.res
         for vertex in [vertex for vertex in tile.vertices if vertex.color in color2player]:
-            color2player[vertex.color] + resource
+            if vertex.level == 2:
+                color2player[vertex.color] + resource
 
     print('---initialize resource---')
     for jugador in color2player.values():
@@ -41,7 +42,7 @@ def init_tiles(screen):
         screen: 显示的屏幕
 
     Returns:
-        list(Tile)
+        list[Tile]
         dict
     """
     # x_unit和y_unit表示相邻两层的第一个六边形中心的坐标差
@@ -78,7 +79,8 @@ def roll(joueur: Player, no2tiles: dict, color2player: dict, turno: int):
         resource = tile.res
         for vertex in [vertex for vertex in tile.vertices if vertex.color in color2player]:
             jugador = color2player[vertex.color]
-            jugador + resource
+            for _ in range(vertex.level):
+                jugador + resource
 
     print(f"{turno} round, {joueur.name} has rolled {no}")
 
@@ -91,7 +93,7 @@ def build_road(player: Player, tile: Hexagon, j: int, edge2edge: dict, edge2ver:
     """
     road = tile.edges[j - 1]
     if road.color != Hexagon.INIT_COLOR:
-        player.warning(is_occupied=True)
+        player.warning(message=WarningMessage.OCCUPIED)
     elif not is_check or any(
             [adj.color == player.color for adj in edge2edge[road]] +
             [adj.color == player.color for adj in edge2ver[road]]
@@ -101,7 +103,7 @@ def build_road(player: Player, tile: Hexagon, j: int, edge2edge: dict, edge2ver:
         else:
             player.warning(obj='road')
     else:
-        player.warning(is_enclave=True)
+        player.warning(message=WarningMessage.ENCLAVE)
     sleep(0.5)
 
 
@@ -121,16 +123,36 @@ def build_village(player: Player, tile: Hexagon, j: int, ver2edge: dict, ver2ver
     """
     village = tile.vertices[j - 1]
     if village.color != Hexagon.INIT_COLOR:
-        player.warning(is_occupied=True)
+        player.warning(message=WarningMessage.OCCUPIED)
     elif not is_check or any([edge.color == player.color for edge in ver2edge[village]]):
         if any([ver.color != Hexagon.INIT_COLOR for ver in ver2ver[village]]):
-            player.warning(is_overcrowded=True)
+            player.warning(message=WarningMessage.OVERCROWDED)
         elif player.build_village():
             tile.change_vertex_color(j - 1, player.color)
+            player.point += 1
         else:
             player.warning(obj='village')
     else:
-        player.warning(is_enclave=True)
+        player.warning(message=WarningMessage.ENCLAVE)
+    sleep(0.5)
+
+
+def upgrade_village(player: Player, tile: Hexagon, j: int):
+    """升级村庄
+
+    Args:
+        player:
+        tile:
+        j: 角在tile的序号，从1开始
+    """
+    village = tile.vertices[j - 1]
+    if village.color != player.color:
+        player.warning(message=WarningMessage.OCCUPIED)
+    elif player.update_village():
+        tile.upgrade_vertex(j - 1)
+        player.point += 1
+    else:
+        player.warning(message=WarningMessage.SHORTAGE)
     sleep(0.5)
 
 
@@ -143,6 +165,7 @@ def demolish_road(player: Player, tile: Hexagon, j: int):
 def demolish_village(player: Player, tile: Hexagon, j: int):
     village = tile.vertices[j - 1]
     player.demolish_village(village=village, color=Hexagon.INIT_COLOR)
+    player.point -= 1
     sleep(0.5)
 
 
@@ -201,7 +224,7 @@ def main():
         # tile grows resource
         if turno > 8:
             # roll点
-            roll(player, no2tiles, color2player,turno)
+            roll(player, no2tiles, color2player, turno)
 
         # show the current resources of each player
         # by name's alphabetic order
@@ -261,6 +284,8 @@ def main():
                 build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=i > 8)
             elif keys[pygame.K_v]:
                 build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=i > 8)
+            elif keys[pygame.K_u]:
+                upgrade_village(player, tiles[i], j)
             elif keys[pygame.K_t]:
                 demolish_road(player, tile=tiles[i], j=j)
             elif keys[pygame.K_b]:
@@ -274,6 +299,11 @@ def main():
             ver_group.draw(screen)
 
             pygame.display.update()
+
+            if player.point >= WIN_POINT:
+                print(f'GAME OVER!')
+                pygame.quit()
+                exit()
 
             # pass over to the next player
             if keys[pygame.K_0]:

@@ -12,7 +12,11 @@ CAPTION = '妹多局之卡坦岛'
 # tile
 RADIUS = 30
 
+# vertex
+INIT_COLOR = 'white'
+
 # 玩家配置
+WIN_POINT = 10
 names = ['小蓝', '小紫', '小红', '小绿']
 colors = ['blue', 'purple', 'red', 'green']
 xs = [0] * 4
