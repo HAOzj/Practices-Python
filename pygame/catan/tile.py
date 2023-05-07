@@ -9,7 +9,7 @@ import math
 import pygame
 
 from conf import (
-    RADIUS, INIT_COLOR
+    RADIUS, INIT_COLOR, RESOURCES
 )
 from edge import Edge
 from vertex import Vertex
@@ -30,7 +30,7 @@ class Hexagon(pygame.sprite.Sprite):
         vertices(list[Vertex]): six vertices, where players can build settlements
     """
     RADIUS = RADIUS
-    RESOURCE_TYPES = 'wool lumber wheat ore brick desert'.split(' ')
+    RESOURCE_TYPES = RESOURCES
     RESOURCE_IMAGES = [pygame.image.load(f"../images/catan/{res}.jpeg") for res in RESOURCE_TYPES]
     TIPO2IMAGE = dict(zip(RESOURCE_TYPES, RESOURCE_IMAGES))
     G3 = math.sqrt(3)

@@ -4,17 +4,19 @@ Created on May 03 2023
 
 @author : woshihaozhaojun@sina.com
 """
+import random
 from collections import deque
 from time import sleep
 
 import pygame
 
 from conf import (
-    CAPTION, WIDTH, HEIGHT, BACKGROUND, WIN_POINT,
+    CAPTION, WIDTH, HEIGHT, BACKGROUND,
+    WIN_POINT, HUT_MAX, TOWN_MAX, RESOURCES,
     xs, ys, colors, names
 )
 from player import (
-    Player, WarningMessage
+    Player, WarningMessage, DevelopCard
 )
 from tile import Hexagon
 from util import (
@@ -33,6 +35,15 @@ def init_resource(hexs, color2player):
     print('---initialize resource---')
     for jugador in color2player.values():
         print(f"for {jugador.name}, {jugador.resources}")
+
+
+def init_develop_card():
+    """初始化发展卡堆"""
+    ans = [[DevelopCard.KNIGHT]] * 20 \
+        + [[DevelopCard.ROAD] * 2, [DevelopCard.CARD] * 2, [DevelopCard.MONOPOLY]] * 4 \
+        + [[DevelopCard.POINT]] * 8
+    random.shuffle(ans)
+    return ans
 
 
 def init_tiles(screen):
@@ -100,10 +111,12 @@ def build_road(player: Player, tile: Hexagon, j: int, edge2edge: dict, edge2ver:
     ):
         if player.build_road():
             tile.change_edge_color(j - 1, player.color)
+            player.roads.add(road)
         else:
             player.warning(obj='road')
     else:
         player.warning(message=WarningMessage.ENCLAVE)
+
     sleep(0.5)
 
 
@@ -124,12 +137,15 @@ def build_village(player: Player, tile: Hexagon, j: int, ver2edge: dict, ver2ver
     village = tile.vertices[j - 1]
     if village.color != Hexagon.INIT_COLOR:
         player.warning(message=WarningMessage.OCCUPIED)
+    elif len(player.huts) >= HUT_MAX:
+        player.warning(message=WarningMessage.EXCEED, obj='hut')
     elif not is_check or any([edge.color == player.color for edge in ver2edge[village]]):
         if any([ver.color != Hexagon.INIT_COLOR for ver in ver2ver[village]]):
             player.warning(message=WarningMessage.OVERCROWDED)
         elif player.build_village():
             tile.change_vertex_color(j - 1, player.color)
             player.point += 1
+            player.huts.add(village)
         else:
             player.warning(obj='village')
     else:
@@ -148,9 +164,13 @@ def upgrade_village(player: Player, tile: Hexagon, j: int):
     village = tile.vertices[j - 1]
     if village.color != player.color:
         player.warning(message=WarningMessage.OCCUPIED)
+    elif len(player.towns) >= TOWN_MAX:
+        player.warning(message=WarningMessage.EXCEED, obj='village')
     elif player.update_village():
+        player.huts.discard(village)
         tile.upgrade_vertex(j - 1)
         player.point += 1
+        player.towns.add(village)
     else:
         player.warning(message=WarningMessage.SHORTAGE)
     sleep(0.5)
@@ -166,7 +186,26 @@ def demolish_village(player: Player, tile: Hexagon, j: int):
     village = tile.vertices[j - 1]
     player.demolish_village(village=village, color=Hexagon.INIT_COLOR)
     player.point -= 1
+    player.huts.remove(village)
     sleep(0.5)
+
+
+def draw_develop_card(player: Player, develop_card_stack: list):
+    """抽发展卡"""
+    if develop_card_stack:
+        if player.draw_develop_card():
+            card = develop_card_stack.pop()
+            player.develop_card += card
+    else:
+        print("develop card stack is empty")
+    sleep(0.5)
+
+
+def monopolize(player: Player, players: list, tile: Hexagon):
+    res = tile.res
+    if res in RESOURCES[:-1]:
+        for tmp in [tmp for tmp in players if tmp != player]:
+            player.resources[res] += tmp.resources[res]
 
 
 def main():
@@ -179,7 +218,8 @@ def main():
     # 设置游戏标题
     pygame.display.set_caption(CAPTION)
 
-    # 初始化tiles, players
+    # 初始化tiles, players, 发展卡堆
+    develop_card_stack = init_develop_card()
     tiles, no2tiles = init_tiles(screen)
 
     players = deque([
@@ -189,9 +229,6 @@ def main():
 
     color2player = dict([(player.color, player) for player in players])
     ver2edge, ver2ver, edge2edge, edge2ver = drop_duplicate_and_befriend_edge_vertex(tiles)
-
-    # for v, es in ver2edge.items():
-    #     print(v.topleft, [e.mid for e in es])
 
     # 初始化精灵组
     hex_group = pygame.sprite.Group()
@@ -284,12 +321,18 @@ def main():
                 build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=turno > 8)
             elif keys[pygame.K_v]:
                 build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=turno > 8)
-            elif keys[pygame.K_u]:
+            elif keys[pygame.K_u] and turno > 4:
                 upgrade_village(player, tiles[i], j)
             elif keys[pygame.K_t]:
                 demolish_road(player, tile=tiles[i], j=j)
             elif keys[pygame.K_b]:
                 demolish_village(player, tile=tiles[i], j=j)
+            elif keys[pygame.K_d] and turno > 8:  # 抽发展卡
+                draw_develop_card(player, develop_card_stack)
+            elif keys[pygame.K_p]:  # 抽两张卡
+                player.pick_resource(tiles[i])
+            elif keys[pygame.K_m]:  # 使用垄断卡
+                monopolize(player, players, tiles[i])
 
             for jugador in players:
                 jugador.show_card()

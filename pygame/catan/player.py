@@ -12,12 +12,23 @@ import pygame
 # from enum import StrEnum
 from util import draw_colorized_contour
 
+from conf import RESOURCES
 
-class WarningMessage():
+
+class WarningMessage:
     OVERCROWDED = "there is already settlement in vicinity"
     OCCUPIED = "this {} is already occupied"
     ENCLAVE = "no connected settlement or road"
     SHORTAGE = "no enough res for {}"
+    EXCEED = "your {}s have exceeded the capacity"
+
+
+class DevelopCard:
+    KNIGHT = 'knight'
+    POINT = 'point'
+    ROAD = 'road'
+    CARD = 'card'
+    MONOPOLY = 'monopoly'
 
 
 class Player(pygame.sprite.Sprite):
@@ -53,11 +64,16 @@ class Player(pygame.sprite.Sprite):
         self.resources = defaultdict(int)
         self.name = name
         self.font = pygame.font.SysFont('Arial', 12)
-        self.edges, self.vertices = set(), set()
-        self.point = 0  # TODO: 计算分数
+        self.point = 0  # 分数
+        self.roads, self.huts, self.towns = set(), set(), set()  # 大城和小城分开是为了保证数量不超
+        self.develop_card = list()
+
+        # 文字显示位置
         self.dest = (self.rect.right + 10, self.rect.y)
         self.card_dest = (self.rect.right + 10, self.rect.y + self.HEIGHT)
+        self.develop_card_dest = (self.rect.right + 10, self.rect.y + 1.5 * self.HEIGHT)
 
+        # 开始时可以建一座小城和一座大城以及两条路
         for res in self.VILLAGE + self.ROAD:
             self.__add__(res)
             self + res
@@ -74,31 +90,43 @@ class Player(pygame.sprite.Sprite):
     def roll_dice():
         return random.randint(1, 6) + random.randint(1, 6)
 
-    def build_road(self):
-        if all([self.resources[res] >= 1 for res in self.ROAD]):
-            for res in self.ROAD:
+    def pick_resource(self, tile):
+        if tile.res in RESOURCES[:-1] and DevelopCard.CARD in self.develop_card:
+            self + tile.res
+            self.develop_card.remove(DevelopCard.CARD)
+
+    def consume_resource(self, res_list):
+        if all([self.resources[res] >= 1 for res in res_list]):
+            for res in res_list:
                 self - res
+            return True
+        return False
+
+    def draw_develop_card(self):
+        return self.consume_resource(self.DEVELOP_CARD)
+
+    def build_road(self):
+        is_road_enough = self.consume_resource(self.ROAD)
+        if is_road_enough:
+            return True
+        elif DevelopCard.ROAD in self.develop_card:
+            self.develop_card.remove(DevelopCard.ROAD)
             return True
         return False
 
     def build_village(self):
-        if all([self.resources[res] >= 1 for res in self.VILLAGE]):
-            for res in self.VILLAGE:
-                self - res
-            return True
-        return False
+        return self.consume_resource(self.VILLAGE)
 
     def update_village(self):
-        if all([self.resources[res] >= 1 for res in self.UPGRADE]):
-            for res in self.UPGRADE:
-                self - res
-            return True
-        return False
+        return self.consume_resource(self.UPGRADE)
 
     def demolish_village(self, village, color):
         if village.color == self.color:
             for res in self.VILLAGE:
                 self + res
+            if village.level == 2:
+                for res in self.UPGRADE:
+                    self + res
             village.change_color(color)
         else:
             self.screen.blit(
@@ -151,4 +179,13 @@ class Player(pygame.sprite.Sprite):
                 pygame.Color(self.color)
             ),
             dest=self.card_dest
+        )
+
+        self.screen.blit(
+            source=self.font.render(
+                ",".join(self.develop_card),
+                True,
+                pygame.Color(self.color)
+            ),
+            dest=self.develop_card_dest
         )
