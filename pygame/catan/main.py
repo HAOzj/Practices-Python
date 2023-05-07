@@ -281,9 +281,9 @@ def main():
             elif keys[pygame.K_6]:
                 j = 6
             elif keys[pygame.K_r]:
-                build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=i > 8)
+                build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=turno > 8)
             elif keys[pygame.K_v]:
-                build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=i > 8)
+                build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=turno > 8)
             elif keys[pygame.K_u]:
                 upgrade_village(player, tiles[i], j)
             elif keys[pygame.K_t]:
