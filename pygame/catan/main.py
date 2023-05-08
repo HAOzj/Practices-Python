@@ -205,7 +205,8 @@ def monopolize(player: Player, players: list, tile: Hexagon):
     res = tile.res
     if res in RESOURCES[:-1]:
         for tmp in [tmp for tmp in players if tmp != player]:
-            player.resources[res] += tmp.resources[res]
+            player + tmp.confiscate(res)
+            # player.resources[res] += tmp.resources[res]
 
 
 def main():

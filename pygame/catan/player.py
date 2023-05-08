@@ -81,7 +81,13 @@ class Player(pygame.sprite.Sprite):
             self + res
 
     def __add__(self, resource):
-        self.resources[resource] += 1
+        if isinstance(resource, str):
+            self.resources[resource] += 1
+        elif isinstane(resource, dict):
+            for k, v in resource.items():
+                if isinstance(v, int):
+                    self.resources[k] += v
+
 
     def __sub__(self, resource):
         self.resources[resource] -= 1
@@ -189,3 +195,8 @@ class Player(pygame.sprite.Sprite):
             ),
             dest=self.develop_card_dest
         )
+
+    def confiscate(self, res):
+        num = self.resources[res]
+        self.resources[res] = 0
+        return {res: num}

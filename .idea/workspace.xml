@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pygame/catan/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/conf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pygame/catan/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pygame/catan/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pygame/catan/tile.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygame/catan/tile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,11 +111,10 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/fluent_python/promotions" />
@@ -305,6 +302,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
