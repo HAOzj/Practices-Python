@@ -25,7 +25,14 @@ from util import (
 
 
 def init_resource(hexs, color2player):
-    """玩家选择初始位置后获取初始资源"""
+    """玩家选择初始位置后获取初始资源
+
+    只有大城才能获取
+
+    Args:
+        hexs: 所有的资源tile
+        color2player: 颜色和玩家的映射
+    """
     for tile in hexs:
         resource = tile.res
         for vertex in [vertex for vertex in tile.vertices if vertex.color in color2player]:
@@ -157,8 +164,8 @@ def upgrade_village(player: Player, tile: Hexagon, j: int):
     """升级村庄
 
     Args:
-        player:
-        tile:
+        player: 当前玩家
+        tile: 当前tile
         j: 角在tile的序号，从1开始
     """
     village = tile.vertices[j - 1]
@@ -177,16 +184,22 @@ def upgrade_village(player: Player, tile: Hexagon, j: int):
 
 
 def demolish_road(player: Player, tile: Hexagon, j: int):
+    """拆除道路"""
     road = tile.edges[j - 1]
     player.demolish_road(road=road, color=Hexagon.INIT_COLOR)
     sleep(0.5)
 
 
 def demolish_village(player: Player, tile: Hexagon, j: int):
+    """拆除建筑，可以是小城亦可以是大城
+
+    Args:
+        player: 当前玩家
+        tile:
+        j: 角在tile的序号，从1开始
+    """
     village = tile.vertices[j - 1]
     player.demolish_village(village=village, color=Hexagon.INIT_COLOR)
-    player.point -= 1
-    player.huts.remove(village)
     sleep(0.5)
 
 
@@ -212,7 +225,7 @@ def monopolize(player: Player, players: list, tile: Hexagon):
 def main():
     # 初始化游戏
     pygame.init()
-    pygame.mixer.init()
+    # pygame.mixer.init()
     # 创建游戏窗口
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -334,6 +347,9 @@ def main():
                 player.pick_resource(tiles[i])
             elif keys[pygame.K_m]:  # 使用垄断卡
                 monopolize(player, players, tiles[i])
+            elif keys[pygame.K_F4]:
+                player.barter(tiles[i].res)
+                sleep(0.5)
 
             for jugador in players:
                 jugador.show_card()
