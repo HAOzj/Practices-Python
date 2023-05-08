@@ -83,11 +83,10 @@ class Player(pygame.sprite.Sprite):
     def __add__(self, resource):
         if isinstance(resource, str):
             self.resources[resource] += 1
-        elif isinstane(resource, dict):
+        elif isinstance(resource, dict):
             for k, v in resource.items():
                 if isinstance(v, int):
                     self.resources[k] += v
-
 
     def __sub__(self, resource):
         self.resources[resource] -= 1
