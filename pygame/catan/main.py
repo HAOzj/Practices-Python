@@ -309,15 +309,19 @@ def main():
             # 左右键来调整要操作的tile
             if keys[pygame.K_LEFT]:
                 i -= 1
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_RIGHT]:
                 i += 1
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_UP]:
                 i -= 5
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_DOWN]:
                 i += 5
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_1]:
                 j = 1

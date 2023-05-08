@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
     UPGRADE = ['wheat'] * 2 + ['ore'] * 3
     DEVELOP_CARD = ['wheat', 'wool', 'ore']
     I = 0
-    IMAGE = ['xiaokuan', 'jiahuan', 'xiaoshu', 'giegie']
+    IMAGE = ['11vs8', 'jiahuan', 'xiaoshu', 'giegie']
 
     def __init__(self, color, x, y, name, screen):
         super().__init__()

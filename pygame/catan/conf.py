@@ -13,7 +13,7 @@ CAPTION = '妹多局之卡坦岛'
 RESOURCES = 'wool lumber wheat ore brick desert'.split(' ')
 
 # tile
-RADIUS = 30
+RADIUS = 45
 
 # vertex
 INIT_COLOR = 'white'
@@ -21,8 +21,8 @@ INIT_COLOR = 'white'
 # 玩家配置
 WIN_POINT = 10
 HUT_MAX, TOWN_MAX = 5, 4
-names = ['小蓝', '小紫', '小红', '小绿']
-colors = ['blue', 'purple', 'red', 'green']
+names = ['小蓝', '小紫', '小红', '小黄']
+colors = ['blue', 'purple', 'red', 'yellow']
 xs = [0] * 4
 ys = [0, HEIGHT / 4, HEIGHT / 2, HEIGHT / 4 * 3]
 
