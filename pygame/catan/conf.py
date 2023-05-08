@@ -1,11 +1,11 @@
 # -*- coding:utf-8 -*-
 """
-Created on May 03 2023
+Created on May 03, 2023
 
 @author : woshihaozhaojun@sina.com
 """
 # 屏幕
-WIDTH, HEIGHT = 1000, 800
+WIDTH, HEIGHT = 1500, 1200
 BACKGROUND = (200, 200, 200)
 CAPTION = '妹多局之卡坦岛'
 

@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Created on May 03 2023
+Created on May 03, 2023
 
 @author : woshihaozhaojun@sina.com
 """
@@ -73,7 +73,7 @@ def init_tiles(screen):
     tiles = list()
     no2tiles = dict()
     for i in range(-3, 4):
-        first_x, first_y = 200 + x_unit * (abs(i) + 2), y_unit * (i + 4)
+        first_x, first_y = 400 + x_unit * (abs(i) + 2), y_unit * (i + 4)
         for j in range(6 - abs(i)):
             tile = layout.pop()
             hexagon = Hexagon(
