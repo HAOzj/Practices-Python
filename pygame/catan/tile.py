@@ -52,6 +52,15 @@ class Hexagon(pygame.sprite.Sprite):
         self.vertices, self.edges = None, None
         self._init_vertices()
         self._init_edges()
+        self.is_occupied = False
+
+    def host_bandit(self):
+        self.image.fill((255, 255, 0))
+        self.is_occupied = True
+
+    def remove_bandit(self):
+        self.image = pygame.transform.scale(self.TIPO2IMAGE[self.res], (self.WIDTH, self.HEIGHT))
+        self.is_occupied = False
 
     def update(self):
         pass

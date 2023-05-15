@@ -216,3 +216,10 @@ class Player(pygame.sprite.Sprite):
         if self.resources[res] >= 4:
             self.develop_card.append(DevelopCard.CARD)
             self.resources[res] -= 4
+
+    def get_robbed(self, player):
+        for tmp, cnt in self.resources.items():
+            if cnt > 0:
+                self - tmp
+                player + tmp
+                return
