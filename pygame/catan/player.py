@@ -119,6 +119,12 @@ class Player(pygame.sprite.Sprite):
             return True
         return False
 
+    def call_knight(self):
+        if DevelopCard.KNIGHT in self.develop_card:
+            self.develop_card.remove(DevelopCard.KNIGHT)
+            return True
+        return False
+
     def build_village(self):
         return self.consume_resource(self.VILLAGE)
 

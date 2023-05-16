@@ -47,8 +47,8 @@ def init_resource(hexs, color2player):
 def init_develop_card():
     """初始化发展卡堆"""
     ans = [[DevelopCard.KNIGHT]] * 20 \
-        + [[DevelopCard.ROAD] * 2, [DevelopCard.CARD] * 2, [DevelopCard.MONOPOLY]] * 4 \
-        + [[DevelopCard.POINT]] * 8
+          + [[DevelopCard.ROAD] * 2, [DevelopCard.CARD] * 2, [DevelopCard.MONOPOLY]] * 4 \
+          + [[DevelopCard.POINT]] * 8
     random.shuffle(ans)
     return ans
 
@@ -226,7 +226,7 @@ def draw_develop_card(player: Player, develop_card_stack: list):
     sleep(0.5)
 
 
-def monopolize(player: Player, players: list, tile: Hexagon):
+def monopolize(player: Player, players: deque, tile: Hexagon):
     res = tile.res
     if res in RESOURCES[:-1]:
         for tmp in [tmp for tmp in players if tmp != player]:
@@ -369,12 +369,16 @@ def main():
                 draw_develop_card(player, develop_card_stack)
             elif keys[pygame.K_p]:  # 抽两张卡
                 player.pick_resource(tiles[i])
+                sleep(0.5)
             elif keys[pygame.K_m]:  # 使用垄断卡
                 monopolize(player, players, tiles[i])
+                sleep(0.5)
             elif keys[pygame.K_F4]:
                 player.barter(tiles[i].res)
                 sleep(0.5)
-
+            elif keys[pygame.K_k]:  # 召唤骑士
+                if player.call_knight():
+                    no = 7
 
             for jugador in players:
                 jugador.show_card()
