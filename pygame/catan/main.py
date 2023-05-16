@@ -322,7 +322,11 @@ def main():
             tiles[i].chosen_one(color=player.color)
 
             keys = pygame.key.get_pressed()
-            # 左右键来调整要操作的tile
+            # 左右键来一格调整要操作的tile
+            # 上下键来5格调整要操作的tile
+            # 1-6的数字键来选择道路或者城镇
+            # 1为4点钟方向的城镇，2为6点钟方向的城镇，顺时针方向，以此类推
+            # 1为以1城镇为起点，2城镇为终点的道路，顺时针方向，以此类推
             if keys[pygame.K_LEFT]:
                 i -= 1
                 i %= len(tiles)
@@ -351,19 +355,19 @@ def main():
                 j = 5
             elif keys[pygame.K_6]:
                 j = 6
-            elif no == 7:
+            elif no == 7:  # roll出7或者使用骑士卡
                 if keys[pygame.K_q] and tiles[i] != bandit_host:
                     move_bandit(player, bandit_host, tiles[i], j, color2player)
                     no = 0
-            elif keys[pygame.K_r]:
+            elif keys[pygame.K_r]:  # 建造道路
                 build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=_round > 8)
-            elif keys[pygame.K_v]:
+            elif keys[pygame.K_v]:  # 建造小城
                 build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=_round > 8)
-            elif keys[pygame.K_u] and _round > 4:
+            elif keys[pygame.K_u] and _round > 4:  # 升级建筑
                 upgrade_village(player, tiles[i], j)
-            elif keys[pygame.K_t]:
+            elif keys[pygame.K_t]:  # 拆除道路
                 demolish_road(player, tile=tiles[i], j=j)
-            elif keys[pygame.K_b]:
+            elif keys[pygame.K_b]:  # 拆除建筑
                 demolish_village(player, tile=tiles[i], j=j)
             elif keys[pygame.K_d] and _round > 8:  # 抽发展卡
                 draw_develop_card(player, develop_card_stack)
@@ -373,10 +377,10 @@ def main():
             elif keys[pygame.K_m]:  # 使用垄断卡
                 monopolize(player, players, tiles[i])
                 sleep(0.5)
-            elif keys[pygame.K_F4]:
+            elif keys[pygame.K_F4]:  # 4换1
                 player.barter(tiles[i].res)
                 sleep(0.5)
-            elif keys[pygame.K_k]:  # 召唤骑士
+            elif keys[pygame.K_k]:  # 使用骑士卡
                 if player.call_knight():
                     no = 7
 
