@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Created on May 03 2023
+Created on May 03, 2023
 
 @author : woshihaozhaojun@sina.com
 """
@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
     UPGRADE = ['wheat'] * 2 + ['ore'] * 3
     DEVELOP_CARD = ['wheat', 'wool', 'ore']
     I = 0
-    IMAGE = ['xiaokuan', 'jiahuan', 'xiaoshu', 'giegie']
+    IMAGE = ['11vs8', 'jiahuan', 'xiaoshu', 'giegie']
 
     def __init__(self, color, x, y, name, screen):
         super().__init__()
@@ -83,11 +83,10 @@ class Player(pygame.sprite.Sprite):
     def __add__(self, resource):
         if isinstance(resource, str):
             self.resources[resource] += 1
-        elif isinstane(resource, dict):
+        elif isinstance(resource, dict):
             for k, v in resource.items():
                 if isinstance(v, int):
                     self.resources[k] += v
-
 
     def __sub__(self, resource):
         self.resources[resource] -= 1
@@ -120,6 +119,12 @@ class Player(pygame.sprite.Sprite):
             return True
         return False
 
+    def call_knight(self):
+        if DevelopCard.KNIGHT in self.develop_card:
+            self.develop_card.remove(DevelopCard.KNIGHT)
+            return True
+        return False
+
     def build_village(self):
         return self.consume_resource(self.VILLAGE)
 
@@ -127,12 +132,22 @@ class Player(pygame.sprite.Sprite):
         return self.consume_resource(self.UPGRADE)
 
     def demolish_village(self, village, color):
+        """拆除村庄
+
+        归还资源，减少分数
+        """
         if village.color == self.color:
+            self.point -= village.level
+
+            # 归还资源
             for res in self.VILLAGE:
                 self + res
             if village.level == 2:
                 for res in self.UPGRADE:
                     self + res
+                self.towns.remove(village)
+            else:
+                self.huts.remove(village)
             village.change_color(color)
         else:
             self.screen.blit(
@@ -197,6 +212,20 @@ class Player(pygame.sprite.Sprite):
         )
 
     def confiscate(self, res):
+        """一种资源被剥夺"""
         num = self.resources[res]
         self.resources[res] = 0
         return {res: num}
+
+    def barter(self, res):
+        """用四张同种资源换一张CARD发展卡"""
+        if self.resources[res] >= 4:
+            self.develop_card.append(DevelopCard.CARD)
+            self.resources[res] -= 4
+
+    def get_robbed(self, player):
+        for tmp, cnt in self.resources.items():
+            if cnt > 0:
+                self - tmp
+                player + tmp
+                return

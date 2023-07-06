@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Created on May 03 2023
+Created on May 03, 2023
 
 @author : woshihaozhaojun@sina.com
 """
@@ -49,11 +49,14 @@ class Vertex(pygame.sprite.Sprite):
     def change_color(self, color):
         self.color = color
         if color != INIT_COLOR:
-            self.level += 1
+            self.level = 1
             self._change_image()
+        else:
+            self.level = 0
+            self.image = pygame.surface.Surface((self.WIDTH, self.HEIGHT))
 
     def upgrade(self):
-        self.level += 1
+        self.level = 2
         self._change_image('../images/catan/town.jpeg')
 
     def __hash__(self):

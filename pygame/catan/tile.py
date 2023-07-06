@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Created on May 03 2023
+Created on May 03, 2023
 
 @author : woshihaozhaojun@sina.com
 """
@@ -37,6 +37,7 @@ class Hexagon(pygame.sprite.Sprite):
     WIDTH, HEIGHT = RADIUS * 2 * G3 - 2 * Edge.WIDTH, 2 * RADIUS - 2 * Edge.WIDTH
     ANGLES = [i * math.pi / 3 + math.pi / 6 for i in range(6)]
     INIT_COLOR = INIT_COLOR
+    BANDIT_IMAGE = pygame.image.load("../images/catan/bandit.jpeg")
 
     def __init__(self, no, resource_type, center_x, center_y, screen):
         super().__init__()
@@ -52,6 +53,15 @@ class Hexagon(pygame.sprite.Sprite):
         self.vertices, self.edges = None, None
         self._init_vertices()
         self._init_edges()
+        self.is_occupied = False
+
+    def host_bandit(self):
+        self.image = pygame.transform.scale(self.BANDIT_IMAGE, (self.WIDTH, self.HEIGHT))
+        self.is_occupied = True
+
+    def remove_bandit(self):
+        self.image = pygame.transform.scale(self.TIPO2IMAGE[self.res], (self.WIDTH, self.HEIGHT))
+        self.is_occupied = False
 
     def update(self):
         pass

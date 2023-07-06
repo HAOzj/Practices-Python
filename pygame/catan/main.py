@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Created on May 03 2023
+Created on May 03, 2023
 
 @author : woshihaozhaojun@sina.com
 """
@@ -25,7 +25,14 @@ from util import (
 
 
 def init_resource(hexs, color2player):
-    """玩家选择初始位置后获取初始资源"""
+    """玩家选择初始位置后获取初始资源
+
+    只有大城才能获取
+
+    Args:
+        hexs: 所有的资源tile
+        color2player: 颜色和玩家的映射
+    """
     for tile in hexs:
         resource = tile.res
         for vertex in [vertex for vertex in tile.vertices if vertex.color in color2player]:
@@ -40,8 +47,8 @@ def init_resource(hexs, color2player):
 def init_develop_card():
     """初始化发展卡堆"""
     ans = [[DevelopCard.KNIGHT]] * 20 \
-        + [[DevelopCard.ROAD] * 2, [DevelopCard.CARD] * 2, [DevelopCard.MONOPOLY]] * 4 \
-        + [[DevelopCard.POINT]] * 8
+          + [[DevelopCard.ROAD] * 2, [DevelopCard.CARD] * 2, [DevelopCard.MONOPOLY]] * 4 \
+          + [[DevelopCard.POINT]] * 8
     random.shuffle(ans)
     return ans
 
@@ -66,7 +73,7 @@ def init_tiles(screen):
     tiles = list()
     no2tiles = dict()
     for i in range(-3, 4):
-        first_x, first_y = 200 + x_unit * (abs(i) + 2), y_unit * (i + 4)
+        first_x, first_y = 400 + x_unit * (abs(i) + 2), y_unit * (i + 4)
         for j in range(6 - abs(i)):
             tile = layout.pop()
             hexagon = Hexagon(
@@ -82,18 +89,30 @@ def init_tiles(screen):
     return tiles, no2tiles
 
 
-def roll(joueur: Player, no2tiles: dict, color2player: dict, turno: int):
+def roll(joueur: Player, no2tiles: dict, color2player: dict, _round: int):
     """roll two dices and update players' resources"""
     no = joueur.roll_dice()
-    tiles = no2tiles[no]
-    for tile in tiles:
-        resource = tile.res
-        for vertex in [vertex for vertex in tile.vertices if vertex.color in color2player]:
-            jugador = color2player[vertex.color]
-            for _ in range(vertex.level):
-                jugador + resource
+    if no != 7:
+        tiles = no2tiles[no]
+        for tile in tiles:
+            resource = tile.res
+            for vertex in [vertex for vertex in tile.vertices if vertex.color in color2player]:
+                jugador = color2player[vertex.color]
+                for _ in range(vertex.level):
+                    jugador + resource
 
-    print(f"{turno} round, {joueur.name} has rolled {no}")
+    print(f"{_round} round, {joueur.name} has rolled {no}")
+    return no
+
+
+def move_bandit(player: Player, bandit_host: Hexagon, tile: Hexagon, j: int, color2player: dict):
+    """移动强盗，并获取j角上玩家的一张牌"""
+    bandit_host.remove_bandit()
+    tile.host_bandit()
+    victim_color = tile.vertices[j - 1].color
+    if victim_color in color2player:
+        color2player[victim_color].get_robbed(player)
+        sleep(0.5)
 
 
 def build_road(player: Player, tile: Hexagon, j: int, edge2edge: dict, edge2ver: dict, is_check: bool = True):
@@ -157,8 +176,8 @@ def upgrade_village(player: Player, tile: Hexagon, j: int):
     """升级村庄
 
     Args:
-        player:
-        tile:
+        player: 当前玩家
+        tile: 当前tile
         j: 角在tile的序号，从1开始
     """
     village = tile.vertices[j - 1]
@@ -177,16 +196,22 @@ def upgrade_village(player: Player, tile: Hexagon, j: int):
 
 
 def demolish_road(player: Player, tile: Hexagon, j: int):
+    """拆除道路"""
     road = tile.edges[j - 1]
     player.demolish_road(road=road, color=Hexagon.INIT_COLOR)
     sleep(0.5)
 
 
 def demolish_village(player: Player, tile: Hexagon, j: int):
+    """拆除建筑，可以是小城亦可以是大城
+
+    Args:
+        player: 当前玩家
+        tile:
+        j: 角在tile的序号，从1开始
+    """
     village = tile.vertices[j - 1]
     player.demolish_village(village=village, color=Hexagon.INIT_COLOR)
-    player.point -= 1
-    player.huts.remove(village)
     sleep(0.5)
 
 
@@ -201,7 +226,7 @@ def draw_develop_card(player: Player, develop_card_stack: list):
     sleep(0.5)
 
 
-def monopolize(player: Player, players: list, tile: Hexagon):
+def monopolize(player: Player, players: deque, tile: Hexagon):
     res = tile.res
     if res in RESOURCES[:-1]:
         for tmp in [tmp for tmp in players if tmp != player]:
@@ -212,7 +237,7 @@ def monopolize(player: Player, players: list, tile: Hexagon):
 def main():
     # 初始化游戏
     pygame.init()
-    pygame.mixer.init()
+    # pygame.mixer.init()
     # 创建游戏窗口
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -231,38 +256,42 @@ def main():
     color2player = dict([(player.color, player) for player in players])
     ver2edge, ver2ver, edge2edge, edge2ver = drop_duplicate_and_befriend_edge_vertex(tiles)
 
+    # 初始化强盗领地
+    bandit_host = no2tiles[7][0]
+    bandit_host.host_bandit()
+
     # 初始化精灵组
-    hex_group = pygame.sprite.Group()
+    tile_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
     ver_group = pygame.sprite.Group()
     for tile in tiles:
-        hex_group.add(tile)
+        tile_group.add(tile)
     for player in players:
         player_group.add(player)
     for vertex in ver2edge:
         ver_group.add(vertex)
 
     # 保持游戏运行状态(游戏循环）
-    turno, i, j = 0, 0, 0
+    _round, i, j, no = 0, 0, 0, 0
 
     while players:
         player = players.popleft()
         players.append(player)
 
-        turno += 1
+        _round += 1
 
         # clockwise放一轮小城后, counter-clockwise放大城
-        if turno in [4, 8]:
+        if _round in [4, 8]:
             players.reverse()
 
         # 初始资源
-        if turno == 9:
+        if _round == 9:
             init_resource(tiles, color2player)
 
         # tile grows resource
-        if turno > 8:
+        if _round > 8:
             # roll点
-            roll(player, no2tiles, color2player, turno)
+            no = roll(player, no2tiles, color2player, _round)
 
         # show the current resources of each player
         # by name's alphabetic order
@@ -281,7 +310,7 @@ def main():
 
             screen.fill(BACKGROUND)
 
-            for group in [hex_group]:
+            for group in [tile_group]:
                 group.update()
                 group.draw(screen)
             player_group.draw(screen)
@@ -293,18 +322,26 @@ def main():
             tiles[i].chosen_one(color=player.color)
 
             keys = pygame.key.get_pressed()
-            # 左右键来调整要操作的tile
+            # 左右键来一格调整要操作的tile
+            # 上下键来5格调整要操作的tile
+            # 1-6的数字键来选择道路或者城镇
+            # 1为4点钟方向的城镇，2为6点钟方向的城镇，顺时针方向，以此类推
+            # 1为以1城镇为起点，2城镇为终点的道路，顺时针方向，以此类推
             if keys[pygame.K_LEFT]:
                 i -= 1
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_RIGHT]:
                 i += 1
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_UP]:
                 i -= 5
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_DOWN]:
                 i += 5
+                i %= len(tiles)
                 sleep(0.5)
             elif keys[pygame.K_1]:
                 j = 1
@@ -318,22 +355,34 @@ def main():
                 j = 5
             elif keys[pygame.K_6]:
                 j = 6
-            elif keys[pygame.K_r]:
-                build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=turno > 8)
-            elif keys[pygame.K_v]:
-                build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=turno > 8)
-            elif keys[pygame.K_u] and turno > 4:
+            elif no == 7:  # roll出7或者使用骑士卡
+                if keys[pygame.K_q] and tiles[i] != bandit_host:
+                    move_bandit(player, bandit_host, tiles[i], j, color2player)
+                    no = 0
+            elif keys[pygame.K_r]:  # 建造道路
+                build_road(player, tile=tiles[i], j=j, edge2edge=edge2edge, edge2ver=edge2ver, is_check=_round > 8)
+            elif keys[pygame.K_v]:  # 建造小城
+                build_village(player, tiles[i], j, ver2edge=ver2edge, ver2ver=ver2ver, is_check=_round > 8)
+            elif keys[pygame.K_u] and _round > 4:  # 升级建筑
                 upgrade_village(player, tiles[i], j)
-            elif keys[pygame.K_t]:
+            elif keys[pygame.K_t]:  # 拆除道路
                 demolish_road(player, tile=tiles[i], j=j)
-            elif keys[pygame.K_b]:
+            elif keys[pygame.K_b]:  # 拆除建筑
                 demolish_village(player, tile=tiles[i], j=j)
-            elif keys[pygame.K_d] and turno > 8:  # 抽发展卡
+            elif keys[pygame.K_d] and _round > 8:  # 抽发展卡
                 draw_develop_card(player, develop_card_stack)
             elif keys[pygame.K_p]:  # 抽两张卡
                 player.pick_resource(tiles[i])
+                sleep(0.5)
             elif keys[pygame.K_m]:  # 使用垄断卡
                 monopolize(player, players, tiles[i])
+                sleep(0.5)
+            elif keys[pygame.K_F4]:  # 4换1
+                player.barter(tiles[i].res)
+                sleep(0.5)
+            elif keys[pygame.K_k]:  # 使用骑士卡
+                if player.call_knight():
+                    no = 7
 
             for jugador in players:
                 jugador.show_card()
