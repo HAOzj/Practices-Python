@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 """
-Created on Tue 4 Jul, 2023
+Created on Jul 04, 2023
 
 @author: woshihaozhaojun@sina.com
 """
