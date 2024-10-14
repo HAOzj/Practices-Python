@@ -132,7 +132,7 @@
             }
 
             // Replace with your OpenAI API key
-            const OPENAI_API_KEY = "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";
+            const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
             const responseElement = document.getElementById("output");
             responseElement.innerHTML = "Loading...";

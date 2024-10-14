@@ -9,12 +9,11 @@ import os
 import streamlit as st
 from openai import OpenAI
 
-openai_api_key = "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"
-API_KEY = "sk-Sj1LeEgZgSNRN2HsNxtujuBTbepI9zKPLAc4AV3lvHWWnEuf"
+
 st.title("ChatGPT-like clone")
 
 # Set OpenAI API key from Streamlit secrets
-client = OpenAI(api_key=API_KEY, base_url="https://api.chatanywhere.tech/v1")
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"], base_url="https://api.chatanywhere.tech/v1")
 
 # Set a default model
 if "openai_model" not in st.session_state:
