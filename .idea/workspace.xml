@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/be_and_fe/get_name.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/be_and_fe/identification_gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/be_and_fe/restful_api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/be_and_fe/streamlit_app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/be_and_fe/util/pg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Practices-Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Practices-Python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be_and_fe/get_name.html" beforeDir="false" afterPath="$PROJECT_DIR$/be_and_fe/get_name.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be_and_fe/streamlit_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/be_and_fe/streamlit_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GS.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/GS.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/tmp.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/未命名.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/未命名.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +72,10 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
@@ -115,7 +125,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "Rebasing master",
+    "Python.identification_gui.executor": "Run",
+    "Python.tmp (1).executor": "Run",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "master",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -124,11 +137,13 @@
       <recent name="$PROJECT_DIR$/pygame/images/catan" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/be_and_fe/util" />
+      <recent name="$PROJECT_DIR$/be_and_fe" />
       <recent name="$PROJECT_DIR$/fluent_python/promotions" />
       <recent name="$PROJECT_DIR$/fluent_python" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.identification_gui">
     <configuration name="chapter_6" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Practices-Python" />
       <option name="ENV_FILES" value="" />
@@ -143,6 +158,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/chapter_6.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="identification_gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Practices-Python" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/be_and_fe/identification_gui.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,7 +210,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="promo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="tmp (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Practices-Python" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -182,33 +219,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fluent_python/promotions" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/算法导论中的算法" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/promotions/promo.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tmp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Practices-Python" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tmp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/算法导论中的算法/tmp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -241,13 +256,20 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.identification_gui" />
+        <item itemvalue="Python.tmp (1)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.weak_ref" />
         <item itemvalue="Python.chapter_6" />
-        <item itemvalue="Python.promo" />
-        <item itemvalue="Python.tmp" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-98f27166c754-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.21829.153" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
