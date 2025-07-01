@@ -106,7 +106,7 @@ def visualize_seq_plus_last(seq2cnt: Dict[tuple, int], topk: Optional[int]=None)
 
     def merge_edges(source: List[int], target: List[int], value: List[int]) -> Dict[tuple, int]:
         edge2weight = dict()
-        for s, t, v in zip(soure, target, value):
+        for s, t, v in zip(source, target, value):
             edge = (s, t)
             edge2weight[edge] = edge2weight.get(edge, 0) + v
 
