@@ -1,0 +1,10 @@
+gradio
+xformer
+chromadb
+install
+accelerate
+transformers
+bitsandbytes
+unstructured
+langchain
+sentence-transformers
