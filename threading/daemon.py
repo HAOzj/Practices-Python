@@ -22,7 +22,8 @@ def do(ele):
 q = queue.Queue()
 
 # 创建两个线程
-# daemon表示主线程结束,我就结束
+# daemon表示是守护进程
+# 也就是主线程结束,我就结束
 t1 = threading.Thread(
     target=consumer, args=(q,)
     , daemon=True

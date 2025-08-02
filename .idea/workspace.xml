@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="0c9c5c31-691c-4d7b-9cd2-2032324f62b7" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/tmp-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/未命名-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sankey_diagram.py" beforeDir="false" afterPath="$PROJECT_DIR$/sankey_diagram.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/未命名.ipynb" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/threading/daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/threading/daemon.py" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +120,18 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+<<<<<<< Updated upstream
     &quot;git-widget-placeholder&quot;: &quot;master&quot;
+=======
+    &quot;Python.basic.executor&quot;: &quot;Run&quot;,
+    &quot;Python.daemon.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gather.executor&quot;: &quot;Run&quot;,
+    &quot;Python.identification_gui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tmp (1).executor&quot;: &quot;Run&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+>>>>>>> Stashed changes
   }
 }</component>
   <component name="RecentsManager">
@@ -128,8 +143,13 @@
       <recent name="$PROJECT_DIR$/fluent_python" />
     </key>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Python.main">
     <configuration name="chapter_6" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+  <component name="RunManager" selected="Python.gather">
+    <configuration name="gather" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <module name="Practices-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,11 +157,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fluent_python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/asyncio" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluent_python/chapter_6.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/asyncio/gather.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -236,11 +256,19 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
         <item itemvalue="Python.main" />
         <item itemvalue="Python.weak_ref" />
         <item itemvalue="Python.chapter_6" />
         <item itemvalue="Python.promo" />
         <item itemvalue="Python.tmp" />
+=======
+        <item itemvalue="Python.gather" />
+        <item itemvalue="Python.identification_gui" />
+        <item itemvalue="Python.tmp (1)" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.weak_ref" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
