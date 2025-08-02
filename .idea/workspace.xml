@@ -8,11 +8,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/tmp-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/未命名-checkpoint.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sankey_diagram.py" beforeDir="false" afterPath="$PROJECT_DIR$/sankey_diagram.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/未命名.ipynb" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/threading/daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/threading/daemon.py" afterDir="false" />
+>>>>>>> Stashed changes
 =======
       <change beforePath="$PROJECT_DIR$/threading/daemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/threading/daemon.py" afterDir="false" />
 >>>>>>> Stashed changes
@@ -126,8 +130,11 @@
   &quot;keyToString&quot;: {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     &quot;git-widget-placeholder&quot;: &quot;master&quot;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     &quot;Python.basic.executor&quot;: &quot;Run&quot;,
@@ -152,8 +159,13 @@
   </component>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Python.main">
     <configuration name="chapter_6" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+  <component name="RunManager" selected="Python.gather">
+    <configuration name="gather" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
 =======
   <component name="RunManager" selected="Python.gather">
     <configuration name="gather" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -175,7 +187,10 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/asyncio/gather.py" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -295,6 +310,7 @@
       <list>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <item itemvalue="Python.main" />
         <item itemvalue="Python.weak_ref" />
         <item itemvalue="Python.chapter_6" />
@@ -303,12 +319,17 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         <item itemvalue="Python.gather" />
         <item itemvalue="Python.identification_gui" />
         <item itemvalue="Python.tmp (1)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.weak_ref" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
